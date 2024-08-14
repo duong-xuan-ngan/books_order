@@ -1,54 +1,70 @@
 const express = require("express");
-const { OAuth2Client } = require('google-auth-library');
+const path = require("path");  // Corrected typo
+const bcrypt = require("bcrypt");
 const collection = require("./config");
 
 const app = express();
-const client = new OAuth2Client("608768387652-hjd706rlun6gjk006j50j94u1nnvc75s.apps.googleusercontent.com");
-
+// convert data into json format
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
+app.use(express.urlencoded({extended: false}));
 
 app.set('view engine', 'ejs');
+
+// static file
 app.use(express.static("public"));
 
+// Corrected route definitions
 app.get("/", (req, res) => {
     res.render("login");
 });
 
-// Google OAuth 2.0 handler
-app.post('/auth/google', async (req, res) => {
-    const { credential } = req.body;
+app.get("/signup", (req, res) => {
+    res.render("signup");
+});
 
-    try {
-        const ticket = await client.verifyIdToken({
-            idToken: credential,
-            audience: "608768387652-hjd706rlun6gjk006j50j94u1nnvc75s.apps.googleusercontent.com",
-        });
+// Register User
+app.post("/signup", async (req, res) =>{
+    const data ={
+        name: req.body.username,
+        password: req.body.password
+    }
 
-        const payload = ticket.getPayload();
-        const email = payload.email;
+    // check if the user already exists in the database
+    const existingUser = await collection.findOne({name: data.name});
 
-        // Ensure the email has the correct domain
-        const domain = email.substring(email.lastIndexOf("@") + 1);
-        if (domain !== "student.vgu.edu.vn") {
-            return res.status(400).json({ success: false, message: "You must use a @student.vgu.edu.vn email address." });
-        }
-
-        // Check if the user already exists in the database
-        let user = await collection.findOne({ email });
-
-        if (!user) {
-            // If not, create a new user
-            user = await collection.insertOne({ email, name: payload.name });
-        }
-
-        res.json({ success: true, message: "User authenticated successfully." });
-
-    } catch (error) {
-        console.error("Error verifying Google token:", error);
-        res.status(500).json({ success: false, message: "Authentication failed." });
+    if(existingUser){
+        res.send("User already exists. Please choose a different username.")
+    }
+    else{
+        // hash the password
+        const saltRounds = 10;
+        const hasedPassword = await bcrypt.hash(data.password, saltRounds);
+        data.password = hasedPassword;
+        const userdata = await collection.insertMany(data);
+        console.log(userdata)
     }
 });
+
+// Login user
+app.post("/login", async (req, res) => {
+    try {
+        const check = await collection.findOne({name: req.body.username});
+        if(!check){
+            res.send("user name cannot found");
+        }
+
+        const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
+        if(isPasswordMatch){
+            res.render("")
+        }else{
+            req.send("wrong password");
+        }
+    }catch{
+        res.send("wrong Details");
+    }
+});
+
 
 const port = 5000;
 app.listen(port, () => {
