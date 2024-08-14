@@ -26,7 +26,7 @@ app.get("/signup", (req, res) => {
 // Register User
 app.post("/signup", async (req, res) =>{
     const data ={
-        name: req.body.username,
+        name: req.body.email,
         password: req.body.password
     }
 
