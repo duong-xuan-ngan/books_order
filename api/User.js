@@ -23,6 +23,16 @@ const bcrypt = require('bcrypt');
 // path for statis verified name
 const path = require("path");
 // nodemailer stuff
+
+// Route to display signup page
+router.get('/signup', (req, res) => {
+    res.render('signup');
+});
+
+// Route to display signin page
+router.get('/signin', (req, res) => {
+    res.render('signin');
+});
 let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -199,17 +209,17 @@ router.get("/verify/:userId/:uniqueString",(req, res) => {
                 User.deleteOne({userId})
                 .then(() => {
                     let message = "Link has expired. Please sign up again";
-                    res.redirect(`/user/verified/error=true&message=${message}`);
+                    res.redirect(`/user/verified_signup/error=true&message=${message}`);
                 })
                 .catch(error => {
                     let message = "Clearing user with expired unique string failed";
-                    res.redirect(`/user/verified/error=true&message=${message}`);
+                    res.redirect(`/user/verified_signup/error=true&message=${message}`);
                 })
             })
             .catch((error) => {
                 console.log(error);
                 let message = "An error occurred while clearing expired user veification record";
-                res.redirect(`/user/verified/error=true&message=${message}`);
+                res.redirect(`/user/verified_signup/error=true&message=${message}`);
             })
         } else {
             // valid record exists so we validate the user string
@@ -225,56 +235,54 @@ router.get("/verify/:userId/:uniqueString",(req, res) => {
                     .then(() => {
                         UserVerification.deleteOne({verified: true})
                         .then(() => {
-                            res.sendFile(path.join(__dirname,"./../views/verified.html" ));
+                            res.sendFile(path.join(__dirname,"./../views/verified_signup.html" ));
                         })
                         .catch(err => {
                             console.log(error);
                             let message = "An error occurred while finalizing successful verification";
-                            res.redirect(`/user/verified/error=true&message=${message}`);
+                            res.redirect(`/user/verified_signup/error=true&message=${message}`);
                             
                         })
                     })
                     .catch(err => {
                         console.log(error);
                         let message = "An error occurred while updating user record";
-                        res.redirect(`/user/verified/error=true&message=${message}`);
+                        res.redirect(`/user/verified_signup/error=true&message=${message}`);
                         
                     })
                 } else{
                     // existing record but incorret verification details passed.
                     let message = "Invalid verification details passed. Check your inbox";
-                res.redirect(`/user/verified/error=true&message=${message}`);
+                res.redirect(`/user/verified_signup/error=true&message=${message}`);
                 }
             })
             .catch(error => {
                 let message = "An error occurred while comparing unique strings.";
-                res.redirect(`/user/verified/error=true&message=${message}`);
+                res.redirect(`/user/verified_signup/error=true&message=${message}`);
             })
         }
        } else {
         // user verification record doesn't exist
         let message = "Account record doesn't exists or has been verified already. Please sign up or log in.";
-        res.redirect(`/user/verified/error=true&message=${message}`);
+        res.redirect(`/user/verified_signup/error=true&message=${message}`);
        }
     })
     .catch((error) => {
         console.log(error);
         let message = "An error occurred while checking for existing user verication record";
-        res.redirect(`/user/verified/error=true&message=${message}`);
+        res.redirect(`/user/verified_signup/error=true&message=${message}`);
     })
 })
 
 // Verified page route
-router.get("/verified", (req,res) => {
-    res.sendFile(path.join(__dirname, "./../views/verified.html"))
-
+router.get("/verified_signup", (req,res) => {
+    res.sendFile(path.join(__dirname, "./../views/verified_signup.html"))
 })
 // Signin
 router.post('/signin', (req, res) => {
     let {email, password} = req.body;
     email = email.trim();
     password = password.trim();
-
     if (email == "" || password == ""){
         res.json({
             status: "FAILED",
@@ -332,5 +340,7 @@ router.post('/signin', (req, res) => {
             })
         })
     }
+
 })
+
 module.exports = router;

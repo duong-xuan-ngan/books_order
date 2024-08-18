@@ -81,29 +81,22 @@
 <body>
     <div class="form-container">
         <h2>SignUp</h2>
-        <form action="/signup" method="post">
+        <form action="/user/signup" method="post">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name" required autocomplete="off">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your @student.vgu.edu.vn email" required autocomplete="off" onblur="validateEmail()" oninput="synchronizeUsername()">
+                <input type="email" id="email" name="email" placeholder="Enter your @student.vgu.edu.vn email" required autocomplete="off" onblur="validateEmail()">
                 <div id="email-error" class="error-message"></div>
             </div>
-            <input type="hidden" id="username" name="username">
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="Enter your password" required onblur="validatePassword()">
                 <div id="password-error" class="error-message"></div>
             </div>
-            <div class="form-group">
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm your password" required onblur="validateConfirmPassword()">
-                <div id="confirm-password-error" class="error-message"></div>
-            </div>
-
-            <button type="submit" class="submit-btn" disabled>Sign Up</button>
+            <button type="submit" class="submit-btn">Sign Up</button>
         </form>
     </div>
 </body>
