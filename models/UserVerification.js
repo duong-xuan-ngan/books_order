@@ -5,7 +5,9 @@ const UserVerificationSchema = new Schema({
     userId: String,
     uniqueString: String,
     createdAt: Date,
-    expiresAt: Date
+    expiresAt: Date,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 });
 
 const UserVerification = mongoose.model("UserVerification", UserVerificationSchema);

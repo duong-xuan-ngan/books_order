@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Reset</title>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Reset</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .desktop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .overlap-wrapper {
+            width: 400px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 40px 30px;
+        }
+
+        .text-wrapper {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .frame-wrapper {
+            width: 100%;
+        }
+
+        .text-wrapper-2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .overlap-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .div-wrapper {
+            background-color: #007bff;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .div-wrapper:hover {
+            background-color: #0056b3;
+        }
+
+        .text-wrapper-4 {
+            font-size: 16px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <div class="overlap-wrapper">
+            <div class="text-wrapper">Password Reset</div>
+            <div class="frame-wrapper">
+                <form action="/user/forgotpass" method="POST">
+                    <div class="text-wrapper-2">Enter your email address</div>
+                    <div class="overlap-group">
+                        <input type="email" name="email" placeholder="username@gmail.com" required />
+                    </div>
+                    <div class="div-wrapper">
+                        <button type="submit" class="text-wrapper-4">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

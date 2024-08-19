@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/globals.css" />
-    <link rel="stylesheet" href="/style_reset.css" />
+    <link rel="stylesheet" href="/style_forgot.css" />
   </head>
   <body>
     <div class="desktop">
@@ -16,13 +16,13 @@
           <img class="rectangle-2" src="/img/rectangle-603-1.svg" />
           <div class="frame">
             <div class="overlap-group">
-              <div class="text-wrapper">Reset Password</div>
-              <form action="/user/resetpassword" method="POST">
-                <input type="hidden" name="token" value="<%= token %>">
-                <input type="password" name="password" placeholder="New Password" required>
-                <input type="password" name="confirmPassword" placeholder="Confirm New Password" required>
-                <button type="submit">Reset Password</button>
-              </form>
+              <div class="text-wrapper">Password Reset</div>
+              <p class="an-email-with-a">
+                <span class="span">An email with a password reset link has been sent to your email: <br /></span>
+                <span class="text-wrapper-2"><%= email %><br /></span>
+                <span class="span">Click the button below to proceed with resetting your password.</span>
+              </p>
+              <a href="/user/reset/<%= token %>" class="button">Reset Password</a>
             </div>
           </div>
         </div>
