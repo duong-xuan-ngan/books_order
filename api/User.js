@@ -334,12 +334,7 @@ router.post("/signin", (req, res) => {
                         bcrypt.compare(password, hashedPassword)
                             .then((result) => {
                                 if (result) {
-                                    res.json({
-                                        status: "SUCCESS",
-                                        message: "Signin successful",
-                                        data: data,
-                                    });
-                                    res.redirect("/landingPage");
+                                    res.redirect("/user/landingPage");
                                 } else {
                                     res.render("signin", { error: "Invalid password entered!" });
                                 }
@@ -483,11 +478,7 @@ router.post("/resetpassword", (req, res) => {
 
                     user.save()
                         .then(() => {
-                            res.json({
-                                status: "SUCCESS",
-                                message: "Password has been reset successfully.",
-                            });
-                            res.redirect("/landingPage");
+                            res.redirect("/user/landingPage");
                         })
                         .catch((err) => {
                             console.error("Error saving new password:", err);
