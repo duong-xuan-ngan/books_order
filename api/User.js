@@ -59,6 +59,11 @@ router.get("/resetpassword", (req,res) => {
     res.render("/resetpassword");
 })
 
+// Route to display landingPage
+router.get("/landingPage", (req, res) => {
+    res.render("landingPage");
+});
+
 // Signup
 router.post("/signup", (req, res) => {
     let { name, email, password } = req.body;
@@ -334,11 +339,9 @@ router.post("/signin", (req, res) => {
                                         message: "Signin successful",
                                         data: data,
                                     });
+                                    res.redirect("/landingPage");
                                 } else {
-                                    res.json({
-                                        status: "FAILED",
-                                        message: "Invalid password entered!",
-                                    });
+                                    res.render("signin", { error: "Invalid password entered!" });
                                 }
                             })
                             .catch((err) => {
@@ -484,6 +487,7 @@ router.post("/resetpassword", (req, res) => {
                                 status: "SUCCESS",
                                 message: "Password has been reset successfully.",
                             });
+                            res.redirect("/landingPage");
                         })
                         .catch((err) => {
                             console.error("Error saving new password:", err);
