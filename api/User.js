@@ -64,6 +64,17 @@ router.get("/landingPage", (req, res) => {
     res.render("landingPage");
 });
 
+router.get("/mainpage", (req, res) => {
+    res.render("mainpage");
+})
+
+router.get("/user", (req,res) => {
+    res.render("landingpage");
+})
+
+router.get("/purchase", (req, res) => {
+    res.render("purchase");
+})
 // Signup
 router.post("/signup", (req, res) => {
     let { name, email, password } = req.body;

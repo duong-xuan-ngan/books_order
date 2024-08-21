@@ -1,27 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Signin</title>
-        <link rel="stylesheet" href="/style.css">
-    </head>
-    <body>
-        <div class="form-container">
-            <h2>Login</h2>
-            <form action="/user/signin" method="post">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="off">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url("/img/Background_3.png") center/cover no-repeat fixed;
+        }
+
+        .login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .frame {
+            position: relative; /* Ensure the pseudo-element is positioned relative to this element */
+            -webkit-backdrop-filter: blur(25px) brightness(100%);
+            backdrop-filter: blur(25px) brightness(100%);
+            background-color: #ffffff1a;
+            border-radius: 20px; /* Round corners of the frame */
+            width: 500px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1; /* Ensure the frame is above the pseudo-element */
+        }
+
+        .frame::before {
+            content: '';
+            position: absolute;
+            top: -6px; /* Adjust the distance from the top */
+            left: -6px; /* Adjust the distance from the left */
+            right: -6px; /* Adjust the distance from the right */
+            bottom: -6px; /* Adjust the distance from the bottom */
+            border: 3px solid rgba(255, 255, 255, 0.79); /* White border color */
+            border-radius: 22px; /* Match the frame border radius plus the offset */
+            z-index: -1; /* Place the border behind the frame */
+        }
+
+        .text-wrapper {
+            color: #ffffff;
+            font-family: "Inter", Helvetica, Arial, sans-serif;
+            font-size: 40px; /* Increased font size */
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .text-wrapper-2,
+        .text-wrapper-4 {
+            color: #ffffff;
+            font-family: "Inter", Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .input-wrapper {
+            width: 100%;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .text-wrapper-3,
+        .text-wrapper-5 {
+            color: #00000059;
+            font-family: "Inter", Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 300;
+            text-align: center;
+            background-color: #f8eded;
+            border: 1px solid #000000;
+            border-radius: 20px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+
+        .text-wrapper-3 {
+            height: 40px;
+        }
+
+        .text-wrapper-5 {
+            height: 40px;
+        }
+
+        .input-wrapper input {
+            font-family: "Inter", Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            padding: 10px 40px 10px 10px; /* Padding for the eye icon */
+            border-radius: 20px;
+            border: 1px solid #000;
+            background: #F8EDED;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .clarity-eye-hide {
+            position: absolute;
+            right: 20px; /* Move 10px to the right from original position */
+            top: 50%; /* Center vertically */
+            transform: translateY(5px) translateX(0); /* Move 5px lower */
+            height: 24px;
+            width: 24px;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .div-wrapper {
+            background-color: #af8ffc;
+            border: 1px solid #000000;
+            border-radius: 25.64px;
+            height: 50px;
+            width: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .text-wrapper-6 {
+            color: #ffffff;
+            font-family: "Inter", Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .text-wrapper-6 button {
+            color: #ffffff;
+            font-family: "Inter", Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+         }
+        .don-t-have-an {
+            color: #ffffff;
+            font-family: "Inter", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .span {
+            font-weight: 300;
+        }
+
+        .text-wrapper-7 {
+            font-weight: 600;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .text-wrapper-7:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="frame">
+            <div class="text-wrapper">Login</div>
+            <form action="/user/signin" method="POST">
+                <div class="input-wrapper">
+                    <div class="text-wrapper-2">Email</div>
+                    <input type="email" id="email" name="email" placeholder="username@gmail.com">
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Enter your password" required>
+                <div class="input-wrapper">
+                    <div class="text-wrapper-4">Password</div>
+                    <input type="password" id="password" name="password" placeholder="Password">
+                    <img class="clarity-eye-hide" alt="Toggle Password" src="/img/clarity-eye-hide-line.png" />
                 </div>
-                <button type="submit" class="submit-btn">Login</button>
+                <div class="div-wrapper">
+                    <button type="submit" class="text-wrapper-6">Sign in</button>
+                </div>
             </form>
-            <p>Don't have an account? <a href="/signup">Signup</a></p>
-            <p>Forgotten password? <a href="/user/forgotpass">Forgot it</a></p>
+            <p class="don-t-have-an">
+                <span class="span">Don't have an account yet?</span>
+                <a href="/user/signup" class="text-wrapper-7"> Register here</a>
+                <p>Forgotten password? <a href="/user/forgotpass">Forgot it</a></p>
+            </p>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const togglePassword = document.querySelector('.clarity-eye-hide');
+                const passwordInput = document.querySelector('#password');
+                const eyeOpenImg = "img/clarity-eye-open-line.png"; // Internal eye-open image path
+                const eyeCloseImg = "img/clarity-eye-hide-line.png"; // Internal eye-close image path
+    
+                if (togglePassword && passwordInput) {
+                    togglePassword.addEventListener('click', () => {
+                        const type = passwordInput.type === 'password' ? 'text' : 'password';
+                        passwordInput.type = type;
+                        togglePassword.src = type === 'password' ? eyeCloseImg : eyeOpenImg;
+                    });
+                }
+    
+                const signInButton = document.querySelector('.div-wrapper');
+                if (signInButton) {
+                    signInButton.addEventListener('click', () => {
+                        // Redirect to main page
+                        window.location.href = 'landingPage.ejs'; // Change to your main page URL
+                    });
+                }
+            });
+        </script>
     </body>
-</html>
+    </html>

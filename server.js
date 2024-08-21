@@ -19,7 +19,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Route for serving static files (e.g., CSS, JavaScript)
 app.use(express.static(path.join(__dirname, 'public')));
-
 const UserRouter = require('./api/User');
 app.use('/user', UserRouter);
 
