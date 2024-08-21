@@ -47,7 +47,7 @@ router.get("/signup", (req, res) => {
 
 // Route to display signin page
 router.get("/signin", (req, res) => {
-    res.render("signin");
+    res.render("signin", { error: null }); // Pass the error variable to the view
 });
 
 // Route to display forgot password page
@@ -321,25 +321,20 @@ router.get("/verified_signup", (req, res) => {
 });
 
 // Signin
+// Signin
 router.post("/signin", (req, res) => {
     let { email, password } = req.body;
     email = email.trim();
     password = password.trim();
 
     if (email === "" || password === "") {
-        res.json({
-            status: "FAILED",
-            message: "Empty credentials supplied",
-        });
+        res.render("signin", { error: { type: "empty_credentials" } }); // Pass the error variable to the view
     } else {
         User.find({ email })
             .then((data) => {
                 if (data.length) {
                     if (!data[0].verified) {
-                        res.json({
-                            status: "FAILED",
-                            message: "Email hasn't been verified yet. Check your inbox.",
-                        });
+                        res.render("signin", { error: { type: "email_not_verified" } });
                     } else {
                         const hashedPassword = data[0].password;
                         bcrypt.compare(password, hashedPassword)
@@ -347,7 +342,7 @@ router.post("/signin", (req, res) => {
                                 if (result) {
                                     res.redirect("/user/landingPage");
                                 } else {
-                                    res.render("signin", { error: "Invalid password entered!" });
+                                    res.render("signin", { error: { type: "invalid_credentials" } });
                                 }
                             })
                             .catch((err) => {
@@ -358,10 +353,7 @@ router.post("/signin", (req, res) => {
                             });
                     }
                 } else {
-                    res.json({
-                        status: "FAILED",
-                        message: "Invalid credentials entered!",
-                    });
+                    res.render("signin", { error: { type: "email_not_found" } });
                 }
             })
             .catch((err) => {
@@ -372,9 +364,6 @@ router.post("/signin", (req, res) => {
             });
     }
 });
-
-
-
 // Reset password
 
 router.get("/verified_forgot/:token", (req, res) => {
