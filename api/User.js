@@ -5,6 +5,8 @@ const router = express.Router();
 const User = require("./../models/user");
 // MongoDB user verification model
 const UserVerification = require("./../models/UserVerification");
+// MongoDb passwordReset
+const PasswordReset = require("./../models/PasswordReset");
 
 // Email handler
 const nodemailer = require("nodemailer");
@@ -163,7 +165,7 @@ const sendVerificationEmail = ({ _id, email }, res) => {
         to: email,
         subject: "Verify Your Email",
         html: `<p>Verify your email address to complete the signup and login into your account.</p><p>This link 
-        <b>expires in 6 hours</b>.</p><p>Press <a href=${currentUrl + "user/verified_signup/" + _id + "/" + uniqueString}>here</a>
+        <b>expires in 1 hours</b>.</p><p>Press <a href=${currentUrl + "user/verified_signup/" + _id + "/" + uniqueString}>here</a>
          to proceed.</p>`,
     };
 
@@ -174,7 +176,7 @@ const sendVerificationEmail = ({ _id, email }, res) => {
                 userId: _id,
                 uniqueString: hashedUniqueString,
                 createdAt: Date.now(),
-                expiresAt: Date.now() + 21600000,
+                expiresAt: Date.now() + 3600000,
             });
             newVerification
                 .save()
@@ -212,9 +214,9 @@ const sendVerificationEmail = ({ _id, email }, res) => {
         });
 };
 
-const sendPasswordResetEmail = async (user, resetToken, res) => {
+const sendPasswordResetEmail = async (user, resetToken) => {
+    const uniqueString = uuidv4() + user._id;
     const resetUrl = `http://localhost:5000/user/verified_forgot/${resetToken}`;
-
     const mailOptions = {
         from: process.env.AUTH_EMAIL,
         to: user.email,
@@ -228,18 +230,29 @@ const sendPasswordResetEmail = async (user, resetToken, res) => {
         `,
     };
 
+    const saltRounds = 10;
     try {
+        const hashedUniqueString = await bcrypt.hash(uniqueString, saltRounds);
+        const newPasswordReset = new PasswordReset({
+            userId: user._id,
+            uniqueString: hashedUniqueString,
+            createdAt: Date.now(),
+            expiresAt: Date.now() + 3600000, // 1 hour expiration
+        });
+
+        await newPasswordReset.save();
         await transporter.sendMail(mailOptions);
-        res.json({
+
+        return {
             status: "SUCCESS",
             message: "Password reset email sent.",
-        });
+        };
     } catch (error) {
-        console.error("Transporter error:", error);
-        res.json({
+        console.error("Password reset error:", error);
+        return {
             status: "FAILED",
             message: "Password reset email failed to send.",
-        });
+        };
     }
 };
 // Verify email
