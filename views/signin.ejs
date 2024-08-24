@@ -26,35 +26,37 @@
         }
 
         .frame {
-            position: relative; /* Ensure the pseudo-element is positioned relative to this element */
+            position: relative;
             -webkit-backdrop-filter: blur(25px) brightness(100%);
             backdrop-filter: blur(25px) brightness(100%);
             background-color: #ffffff1a;
-            border-radius: 20px; /* Round corners of the frame */
-            width: 500px;
+            border-radius: 20px;
+            width: 90%; /* Responsive width */
+            max-width: 500px; /* Maximum width for larger screens */
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 1; /* Ensure the frame is above the pseudo-element */
+            z-index: 1;
+            box-sizing: border-box; /* Ensure padding is included in width */
         }
 
         .frame::before {
             content: '';
             position: absolute;
-            top: -6px; /* Adjust the distance from the top */
-            left: -6px; /* Adjust the distance from the left */
-            right: -6px; /* Adjust the distance from the right */
-            bottom: -6px; /* Adjust the distance from the bottom */
-            border: 3px solid rgba(255, 255, 255, 0.79); /* White border color */
-            border-radius: 22px; /* Match the frame border radius plus the offset */
-            z-index: -1; /* Place the border behind the frame */
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border: 3px solid rgba(255, 255, 255, 0.79);
+            border-radius: 22px;
+            z-index: -1;
         }
 
         .text-wrapper {
             color: #ffffff;
             font-family: "Inter", Helvetica, Arial, sans-serif;
-            font-size: 40px; /* Increased font size */
+            font-size: 40px;
             font-weight: 600;
             margin-bottom: 20px;
         }
@@ -101,24 +103,37 @@
         .input-wrapper input {
             font-family: "Inter", Helvetica, Arial, sans-serif;
             font-size: 20px;
-            padding: 10px 40px 10px 10px; /* Padding for the eye icon */
+            padding: 10px 40px 10px 10px;
             border-radius: 20px;
             border: 1px solid #000;
             background: #F8EDED;
             width: 100%;
             box-sizing: border-box;
             position: relative;
+            outline: none; /* Remove default focus outline */
+        }
+
+        .input-wrapper input:focus {
+            border-color: #af8ffc; /* Change border color on focus */
+            box-shadow: none; /* Remove default box-shadow */
         }
 
         .clarity-eye-hide {
             position: absolute;
-            right: 20px; /* Move 10px to the right from original position */
-            top: 50%; /* Center vertically */
-            transform: translateY(5px) translateX(0); /* Move 5px lower */
+            right: 20px;
+            top: 50%;
+            transform: translateY(-40%);
             height: 24px;
             width: 24px;
             cursor: pointer;
             pointer-events: auto;
+        }
+
+        .button-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
 
         .div-wrapper {
@@ -130,8 +145,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 20px;
             cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .div-wrapper:hover {
+            background-color: #9e7efc;
         }
 
         .text-wrapper-6 {
@@ -139,13 +158,15 @@
             font-family: "Inter", Helvetica, Arial, sans-serif;
             font-size: 20px;
             font-weight: 600;
+            border: none;
+            background: none;
+            cursor: pointer;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            display: inline;
         }
-        .text-wrapper-6 button {
-            color: #ffffff;
-            font-family: "Inter", Helvetica, Arial, sans-serif;
-            font-size: 20px;
-            font-weight: 600;
-         }
+
         .don-t-have-an {
             color: #ffffff;
             font-family: "Inter", Helvetica, Arial, sans-serif;
@@ -168,10 +189,23 @@
         .text-wrapper-7:hover {
             text-decoration: underline;
         }
-        .error-message {
-            color: red;
-            font-weight: bold;
-            margin-top: 5px;
+
+        .forgot-password {
+            color: #ffffff;
+            font-family: "Inter", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        .forgot-password a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -182,12 +216,15 @@
             <form action="/user/signin" method="POST">
                 <div class="input-wrapper">
                     <div class="text-wrapper-2">Email</div>
-                    <input type="email" id="email" name="email" placeholder="username@gmail.com">
+                    <input type="email" id="email" name="email" placeholder="username@gmail.com" required>
                 </div>
                 <div class="input-wrapper">
                     <div class="text-wrapper-4">Password</div>
-                    <input type="password" id="password" name="password" placeholder="Password">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                     <img class="clarity-eye-hide" alt="Toggle Password" src="/img/clarity-eye-hide-line.png" />
+                    <p class="forgot-password">
+                        Forgot password? <a href="/user/forgotpass">Click here</a>
+                    </p>
                 </div>
                 <% if (error) { %>
                     <% if (error.type === 'email_not_found') { %>
@@ -200,40 +237,41 @@
                         <div class="error-message">Wrong password or email</div>
                     <% } %>
                 <% } %>
-                <div class="div-wrapper">
-                    <button type="submit" class="text-wrapper-6">Sign in</button>
+                <div class="button-wrapper">
+                    <div class="div-wrapper">
+                        <button type="submit" class="text-wrapper-6">Sign in</button>
+                    </div>
                 </div>
             </form>
             <p class="don-t-have-an">
                 <span class="span">Don't have an account yet?</span>
                 <a href="/user/signup" class="text-wrapper-7"> Register here</a>
-                <p>Forgotten password? <a href="/user/forgotpass">Forgot it</a></p>
             </p>
         </div>
     </div>
     <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const togglePassword = document.querySelector('.clarity-eye-hide');
-                const passwordInput = document.querySelector('#password');
-                const eyeOpenImg = "img/clarity-eye-open-line.png"; // Internal eye-open image path
-                const eyeCloseImg = "img/clarity-eye-hide-line.png"; // Internal eye-close image path
-    
-                if (togglePassword && passwordInput) {
-                    togglePassword.addEventListener('click', () => {
-                        const type = passwordInput.type === 'password' ? 'text' : 'password';
-                        passwordInput.type = type;
-                        togglePassword.src = type === 'password' ? eyeCloseImg : eyeOpenImg;
-                    });
-                }
-    
-                const signInButton = document.querySelector('.div-wrapper');
-                if (signInButton) {
-                    signInButton.addEventListener('click', () => {
-                        // Redirect to main page
-                        window.location.href = 'landingPage.ejs'; // Change to your main page URL
-                    });
-                }
-            });
-        </script>
-    </body>
-    </html>
+        document.addEventListener('DOMContentLoaded', () => {
+            const togglePassword = document.querySelector('.clarity-eye-hide');
+            const passwordInput = document.querySelector('#password');
+            const eyeOpenImg = "/img/clarity-eye-open-line.png"; // Internal eye-open image path
+            const eyeCloseImg = "/img/clarity-eye-hide-line.png"; // Internal eye-close image path
+
+            if (togglePassword && passwordInput) {
+                togglePassword.addEventListener('click', () => {
+                    const type = passwordInput.type === 'password' ? 'text' : 'password';
+                    passwordInput.type = type;
+                    togglePassword.src = type === 'password' ? eyeCloseImg : eyeOpenImg;
+                });
+            }
+
+            const signInButton = document.querySelector('.div-wrapper');
+            if (signInButton) {
+                signInButton.addEventListener('click', () => {
+                    // Redirect to main page
+                    window.location.href = 'mainpage.ejs'; // Change to your main page URL
+                });
+            }
+        });
+    </script>
+</body>
+</html>
