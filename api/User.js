@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const jwt = require('jsonwebtoken');
 // MongoDB user model
 const User = require("./../models/user");
 // MongoDB user verification model
@@ -41,6 +41,11 @@ transporter.verify((error, success) => {
         console.log(success);
     }
 });
+
+router.get("/email_verification", (req, res) => {
+    const email = req.query.email;
+    res.render("email_verification", { email: email });
+})
 
 // Route to display signup page
 router.get("/signup", (req, res) => {
@@ -216,7 +221,7 @@ const sendVerificationEmail = ({ _id, email }, res) => {
 
 const sendPasswordResetEmail = async (user, resetToken) => {
     const uniqueString = uuidv4() + user._id;
-    const resetUrl = `http://localhost:5000/user/verified_forgot/${resetToken}`;
+    const resetUrl = `http://localhost:5000/user/resetpassword/${resetToken}`;
     const mailOptions = {
         from: process.env.AUTH_EMAIL,
         to: user.email,
@@ -333,7 +338,7 @@ router.get("/verified_signup", (req, res) => {
     res.sendFile(path.join(__dirname, "./../views/verified_signup.html"));
 });
 
-// Signin
+
 // Signin
 router.post("/signin", (req, res) => {
     let { email, password } = req.body;
@@ -377,32 +382,9 @@ router.post("/signin", (req, res) => {
             });
     }
 });
-// Reset password
-
-router.get("/verified_forgot/:token", (req, res) => {
-    const { token } = req.params;
-
-    User.findOne({
-        resetPasswordToken: token,
-        resetPasswordExpires: { $gt: Date.now() },
-    })
-        .then((user) => {
-            if (!user) {
-                return res.render("error", {
-                    message: "Password reset token is invalid or has expired.",
-                });
-            }
-            res.render("verified_forgot", { token, email: user.email });
-        })
-        .catch((err) => {
-            res.render("error", {
-                message: "An error occurred.",
-            });
-        });
-});
 
 // Reset Password Page
-router.get("/reset/:token", (req, res) => {
+router.get("/resetpassword/:token", (req, res) => {
     const { token } = req.params;
 
     User.findOne({
@@ -427,10 +409,10 @@ router.get("/reset/:token", (req, res) => {
 router.post("/forgotpass", async (req, res) => {
     try {
         const { email } = req.body;
-        
-        // Check if email exists in the database
+
+        // Check if the email exists in the database
         const user = await User.findOne({ email });
-        
+
         if (!user) {
             return res.json({
                 status: "FAILED",
@@ -442,15 +424,24 @@ router.post("/forgotpass", async (req, res) => {
         const resetToken = uuidv4();
         const resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
 
-        // Update user with reset token and expiry
+        // Update the user with reset token and expiry
         user.resetPasswordToken = resetToken;
         user.resetPasswordExpires = resetTokenExpiry;
 
         await user.save();
 
         // Send password reset email
-        await sendPasswordResetEmail(user, resetToken, res);
+        const emailResponse = await sendPasswordResetEmail(user, resetToken);
 
+        // Redirect to the email verification page (GET request)
+        if (emailResponse.status === "SUCCESS") {
+            res.redirect("/user/email_verification?email=" + encodeURIComponent(user.email));
+        } else {
+            res.json({
+                status: "FAILED",
+                message: "Failed to send password reset email.",
+            });
+        }
     } catch (err) {
         console.error("Error in forgotpass route:", err);
         res.json({
@@ -459,6 +450,8 @@ router.post("/forgotpass", async (req, res) => {
         });
     }
 });
+
+
 
 router.post("/resetpassword", (req, res) => {
     const { token, password, confirmPassword } = req.body;
