@@ -8,6 +8,11 @@ const UserVerification = require("./../models/UserVerification");
 // MongoDb passwordReset
 const PasswordReset = require("./../models/PasswordReset");
 
+//verifyToken
+
+const verifyToken = require("./verifyToken");
+//
+const authRouter = require("./auth");
 // Email handler
 const nodemailer = require("nodemailer");
 
@@ -346,32 +351,39 @@ router.post("/signin", (req, res) => {
     password = password.trim();
 
     if (email === "" || password === "") {
-        res.render("signin", { error: { type: "empty_credentials" } }); // Pass the error variable to the view
+        res.render("signin", { error: { type: "empty_credentials" } });
     } else {
-        User.find({ email })
-            .then((data) => {
-                if (data.length) {
-                    if (!data[0].verified) {
-                        res.render("signin", { error: { type: "email_not_verified" } });
-                    } else {
-                        const hashedPassword = data[0].password;
-                        bcrypt.compare(password, hashedPassword)
-                            .then((result) => {
-                                if (result) {
-                                    res.redirect("/user/landingPage");
-                                } else {
-                                    res.render("signin", { error: { type: "invalid_credentials" } });
-                                }
-                            })
-                            .catch((err) => {
-                                res.json({
-                                    status: "FAILED",
-                                    message: "An error occurred while comparing passwords",
-                                });
-                            });
-                    }
-                } else {
+        User.findOne({ email })
+            .then((user) => {
+                if (!user) {
                     res.render("signin", { error: { type: "email_not_found" } });
+                } else if (!user.verified) {
+                    res.render("signin", { error: { type: "email_not_verified" } });
+                } else {
+                    bcrypt.compare(password, user.password)
+                        .then((isMatch) => {
+                            if (isMatch) {
+                                const accesstoken = jwt.sign({
+                                    id: user._id,
+                                    isAdmin: user.isAdmin,
+                                }, 
+                                process.env.JWT_SECRET,
+                                { expiresIn: '1h' });
+                                res.json({
+                                    status: "SUCCESS",
+                                    message: "Signin successful",
+                                    accesstoken,
+                                });
+                            } else {
+                                res.render("signin", { error: { type: "invalid_credentials" } });
+                            }
+                        })
+                        .catch((err) => {
+                            res.json({
+                                status: "FAILED",
+                                message: "An error occurred while comparing passwords",
+                            });
+                        });
                 }
             })
             .catch((err) => {
@@ -564,4 +576,6 @@ router.post("/reset/:token", (req, res) => {
             });
         });
 });
+
+router.use("/auth", authRouter);
 module.exports = router;
