@@ -2,100 +2,162 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Password Reset</title>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Reset</title>
     <style>
+        /* Basic reset and full-screen background */
         body, html {
             margin: 0;
             padding: 0;
-            width: 100%;
             height: 100%;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-
-        .desktop {
+            width: 100%;
+            overflow: hidden;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            background: url("/img/Background_3.png") center/cover no-repeat fixed;
+            font-family: "Inter", Helvetica, Arial, sans-serif;
+            font-size: 1rem;
+        }
+
+        .forgetPass-email-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100%;
-        }
-
-        .overlap-wrapper {
-            width: 400px;
-            background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            padding: 40px 30px;
-        }
-
-        .text-wrapper {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #333;
-            text-align: center;
-        }
-
-        .frame-wrapper {
             width: 100%;
-        }
-
-        .text-wrapper-2 {
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: #666;
-        }
-
-        .overlap-group {
-            margin-bottom: 20px;
-        }
-
-        input[type="email"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 20px;
             box-sizing: border-box;
         }
 
-        .div-wrapper {
-            background-color: #007bff;
-            border-radius: 5px;
-            padding: 10px;
+        .scroll-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .frame {
+            position: relative;
+            -webkit-backdrop-filter: blur(2.5vw) brightness(100%);
+            backdrop-filter: blur(2.5vw) brightness(100%);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 2vw;
+            width: 90%;
+            max-width: 30rem;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .frame::before {
+            content: '';
+            position: absolute;
+            top: -0.6vw;
+            left: -0.6vw;
+            right: -0.6vw;
+            bottom: -0.6vw;
+            border: 0.3vw solid rgba(255, 255, 255, 0.79);
+            border-radius: 2.2vw;
+            z-index: -1;
+        }
+
+        .text-wrapper {
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            margin-top: 0.75rem;
             text-align: center;
+        }
+
+        .input-wrapper {
+            width: 100%;
+            position: relative;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            text-align: center; /* Center content inside */
+        }
+
+        .text-wrapper-2 {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            text-align: center;
+            width: calc(100% - 20px);
+        }
+
+        .email-input {
+            font-size: 1.25rem;
+            padding: 0.5rem;
+            border-radius: 1.25rem;
+            border: 1px solid #000;
+            background: #F8EDED;
+            width: 100%;
+            max-width: 36rem;
+            box-sizing: border-box;
+        }
+
+        .submit-button {
+            width: 60%;
+            max-width: 14rem;
+            padding: 0.75rem;
+            border-radius: 2rem;
+            border: 1px solid #000;
+            background: #B090FC;
+            color: #FFF;
+            font-size: 1.25rem;
             cursor: pointer;
+            text-align: center;
+            margin-top: 1.75rem;
+            display: inline-block; /* Ensure button is treated as inline-block */
+            transition: background 0.3s;
         }
 
-        .div-wrapper:hover {
-            background-color: #0056b3;
+        .submit-button:hover {
+            background: #9e7efc;
         }
 
-        .text-wrapper-4 {
-            font-size: 16px;
-            color: #fff;
+        /* Media query for landscape mode */
+        @media (orientation: landscape) {
+            .forgetPass-email-page {
+                padding: 10px;
+            }
+
+            .frame {
+                width: 80%;
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="desktop">
-        <div class="overlap-wrapper">
-            <div class="text-wrapper">Password Reset</div>
-            <div class="frame-wrapper">
-                <form action="/user/forgotpass" method="POST">
+    <div class="forgetPass-email-page">
+        <div class="scroll-wrapper">
+            <div class="frame">
+                <div class="text-wrapper">Password Reset</div>
+                <div class="input-wrapper">
                     <div class="text-wrapper-2">Enter your email address</div>
-                    <div class="overlap-group">
-                        <input type="email" name="email" placeholder="username@gmail.com" required />
-                    </div>
-                    <div class="div-wrapper">
-                        <button type="submit" class="text-wrapper-4">Submit</button>
-                    </div>
-                </form>
+                    <form action="/user/forgotpass" method="post">
+                        <input
+                            type="email"
+                            name="email"
+                            class="email-input"
+                            placeholder="username@gmail.com"
+                            required
+                        />
+                        <button type="submit" class="submit-button">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -5,49 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account Verified</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        /* Basic reset and full-screen background */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            background: url("/img/Background_3.png") center/cover no-repeat fixed;
         }
-        .container {
-            background-color: white;
+
+        /* Center the main content on the page */
+        .desktop {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Wrapper for the content, includes the backdrop filter */
+        .overlap-group-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Main content container with a blurred background */
+        .overlap-group {
+            position: relative;
+            -webkit-backdrop-filter: blur(25px) brightness(100%);
+            backdrop-filter: blur(25px) brightness(100%);
+            background-color: #ffffff1a;
+            border-radius: 20px;
+            width: 80%;
+            max-width: 500px;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+            padding-top: 30px;
         }
-        .container h1 {
-            color: #4CAF50;
+
+        /* Adds a border around the content container */
+        .overlap-group::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border: 3px solid rgba(255, 255, 255, 0.79);
+            border-radius: 22px;
+            z-index: -1;
+        }
+
+        /* Frame container to align text and icon */
+        .frame-2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             margin-bottom: 20px;
+            margin-top: 30px;
         }
-        .container p {
-            color: #555;
-            font-size: 18px;
+
+        /* "Account Verified Successfully!" text style */
+        .text-wrapper {
+            color: #FFF;
+            font-family: "Inter", Helvetica, Arial, sans-serif;
+            font-size: 35px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: normal;
         }
-        .container a {
-            display: inline-block;
+
+        /* Success icon style */
+        .icon {
+            height: 120px;
+            width: 120px;
             margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
         }
-        .container a:hover {
-            background-color: #45a049;
+
+        /* "You can now sign in" text style */
+        .you-can-now-sign-in {
+            color: #FFF;
+            font-family: "Inter", Helvetica, Arial, sans-serif;
+            font-size: 24px; /* Reduced font size */
+            font-weight: 400;
+            text-align: center;
+            line-height: normal;
+            margin-top: 40px;
+        }
+
+        /* Link style for "sign in" text */
+        .text-wrapper-2 {
+            font-weight: 600;
+            color: #FFF;
+            text-decoration: none; /* Default state: no underline */
+            cursor: pointer;
+        }
+
+        /* Hover effect for the link */
+        .text-wrapper-2:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Media query for landscape mode */
+        @media (orientation: landscape) {
+            .overlap-group {
+                width: 60%;
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Account Verified Successfully!</h1>
-        <p>Your Google account has been verified. You can now log in and enjoy our services.</p>
-        <a href="/signin">Go to signin</a>
+    <div class="desktop">
+        <div class="overlap-group-wrapper">
+            <div class="overlap-group">
+                <div class="frame-2">
+                    <div class="text-wrapper">Account Verified Successfully!</div>
+                    <img class="icon" src="/img/check.png" alt="Check Icon"/>
+                </div>
+                <p class="you-can-now-sign-in">
+                    <span class="span">You can now </span> 
+                    <a href="signin.ejs" class="text-wrapper-2">sign in</a>
+                </p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
