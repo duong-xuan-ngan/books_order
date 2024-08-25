@@ -12,7 +12,7 @@ const PasswordReset = require("./../models/PasswordReset");
 
 const verifyToken = require("./verifyToken");
 //
-const authRouter = require("./auth");
+const authRouter = require("./for_user");
 // Email handler
 const nodemailer = require("nodemailer");
 
