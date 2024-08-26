@@ -11,10 +11,23 @@ const PasswordReset = require("./../models/PasswordReset");
 //verifyToken
 
 const verifyToken = require("./verifyToken");
-//
+// authentication for user
 const authRouter = require("./for_user");
 // Email handler
 const nodemailer = require("nodemailer");
+
+// Author
+const authorRoute = require("./Authors");
+// Product
+const productRouter = require("./books");
+// Customer
+const customerRouter = require("./customer");
+// Orders
+const OrderRouter = require("./orders");
+// Cart
+const cartRouter = require("./carts");
+
+
 
 // Unique string generator
 const { v4: uuidv4 } = require("uuid");
@@ -577,5 +590,10 @@ router.post("/reset/:token", (req, res) => {
         });
 });
 
-router.use("/auth", authRouter);
+router.use("/authors", authorRoute);
+router.use("/books", productRouter);
+router.use("/order", OrderRouter);
+router.use("/customers", customerRouter);
+// router.use("/author", authorRouter);
+router.use("/cart", cartRouter)
 module.exports = router;
