@@ -1,5 +1,5 @@
-
-const cart = require("../models/Cart");
+const mongoose = require('mongoose');
+const Cart = require("../models/Cart"); // Correctly capitalized
 const {
   verifyToken,
   verifyTokenAndAuthorization,
@@ -10,12 +10,15 @@ const router = require("express").Router();
 
 // CREATE
 router.post("/", verifyToken, async (req, res) => {
-  const newCart = new Cart({
-    userId: req.user.id,
-    books: req.body.books
-  });
-
   try {
+    const newCart = new Cart({
+      userId: req.user.id,
+      books: req.body.books.map(book => ({
+        bookId: new mongoose.Types.ObjectId(book.bookId),
+        quantity: book.quantity
+      }))
+    });
+
     const savedCart = await newCart.save();
     res.status(200).json(savedCart);
   } catch (err) {
@@ -26,27 +29,27 @@ router.post("/", verifyToken, async (req, res) => {
   }
 });
 
-//UPDATE
-router.put("/:bookId", verifyTokenAndAuthorization, async (req, res) => {
+// UPDATE
+router.put("/:cartId", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    const updatedcart = await cart.findByIdAndUpdate(
-      req.params.id,
+    const updatedCart = await Cart.findByIdAndUpdate(
+      req.params.cartId,
       {
         $set: req.body,
       },
       { new: true }
     );
-    res.status(200).json(updatedcart);
+    res.status(200).json(updatedCart);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//DELETE
-router.delete("/:bookId", verifyTokenAndAdmin, async (req, res) => {
+// DELETE
+router.delete("/:cartId", verifyTokenAndAdmin, async (req, res) => {
   try {
-    await cart.findByIdAndDelete(req.params.id);
-    res.status(200).json("cart has been deleted...");
+    await Cart.findByIdAndDelete(req.params.cartId);
+    res.status(200).json("Cart has been deleted...");
   } catch (err) {
     res.status(500).json(err);
   }
@@ -68,17 +71,14 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
   }
 });
 
-
-//Get all
+// Get all
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
-    try {
-      const carts = await cart.find();
-      res.status(200).json(carts);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-
-
+  try {
+    const carts = await Cart.find();
+    res.status(200).json(carts);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
