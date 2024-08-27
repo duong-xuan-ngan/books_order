@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Customer = require("../models/Customer");
 const Order = require("../models/Orders");
 const {
@@ -21,11 +22,11 @@ router.post("/", verifyToken, async (req, res) => {
   }
 });
 
-//UPDATE
-router.put("/:customerId", verifyTokenAndAdmin, async (req, res) => {
+// UPDATE
+router.put("/:orderId", verifyTokenAndAdmin, async (req, res) => {
   try {
     const updatedOrder = await Order.findByIdAndUpdate(
-      req.params.id,
+      req.params.orderId,  // Use orderId to find and update the order
       {
         $set: req.body,
       },
@@ -37,22 +38,26 @@ router.put("/:customerId", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-//DELETE
-router.delete("/:customerId", verifyTokenAndAdmin, async (req, res) => {
+// DELETE
+router.delete("/:orderId", verifyTokenAndAdmin, async (req, res) => {
   try {
-    await Order.findByIdAndDelete(req.params.id);
+    await Order.findByIdAndDelete(req.params.orderId);  // Use orderId to find and delete the order
     res.status(200).json("Order has been deleted...");
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
+
 //GET Order
 router.get("/find/:customerId", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    const Order = await Order.find({ customerId: req.params.customerId });
-    res.status(200).json(Order);
+    console.log("Querying for customerId:", req.params.customerId);
+    const orders = await Order.find({ customerId: new mongoose.Types.ObjectId(req.params.customerId) });
+    console.log("Query result:", orders);
+    res.status(200).json(orders);
   } catch (err) {
+    console.error("Error:", err);
     res.status(500).json(err);
   }
 });
