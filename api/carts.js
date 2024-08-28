@@ -12,11 +12,8 @@ const router = require("express").Router();
 router.post("/", verifyToken, async (req, res) => {
   try {
     const newCart = new Cart({
-      userId: req.user.id,
-      books: req.body.books.map(book => ({
-        bookId: new mongoose.Types.ObjectId(book.bookId),
-        quantity: book.quantity
-      }))
+      OrderItem: req.body.OrderItem, 
+      totalprice: req.body.totalprice, 
     });
 
     const savedCart = await newCart.save();
@@ -24,7 +21,7 @@ router.post("/", verifyToken, async (req, res) => {
   } catch (err) {
     res.status(500).json({
       message: "Failed to create cart",
-      error: err.message
+      error: err.message,
     });
   }
 });

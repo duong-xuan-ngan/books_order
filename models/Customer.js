@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const customerSchema = new mongoose.Schema({
     name: { type: String, required: true },
     phoneNumber: { type: String, required: true },
+    facebook_link: { type: String, required: true},
     dormColor: { type: String, required: true },
     roomNumber: { type: Number, required: true }
 });

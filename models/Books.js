@@ -11,8 +11,15 @@ const BookSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   quantityInStock: { type: Number, required: true },
   description: { type: String, required: true, },
-  authors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Author' }]
-});
+  authors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Author' }],
+  image: {
+    type: String,
+    default: ''
+  },
+  images: [{
+      type: String
+  }]
+  });
 
 const Book = mongoose.model('Book', BookSchema);
 
