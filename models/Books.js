@@ -5,13 +5,13 @@ const Schema = mongoose.Schema;
 const BookSchema = new mongoose.Schema({
   title: { type: String, required: true, unique: true },
   publisher: String,
-  publicationYear: Number,
   genre: { type: Array },
   pages: Number,
+  original_price: {type: Number},
   price: { type: Number, required: true },
   quantityInStock: { type: Number, required: true },
-  description: { type: String, required: true, },
-  authors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Author' }],
+  author: {type: String, required: true},
+  description: {type: String, required: true},
   image: {
     type: String,
     default: ''

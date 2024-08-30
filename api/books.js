@@ -49,7 +49,7 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
 //GET Books
 router.get("/find/:id", async (req, res) => {
   try {
-    const book = await Books.findById(req.params.id).populate('authors');
+    const book = await Books.findById(req.params.id);
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
     }
