@@ -8,7 +8,7 @@ const UserVerification = require("./../models/UserVerification");
 // MongoDb passwordReset
 const PasswordReset = require("./../models/PasswordReset");
 
-//verifyToken
+
 
 const verifyToken = require("./verifyToken");
 // authentication for user

@@ -1,48 +1,101 @@
-import React from 'react'
-import { FaGripLines } from "react-icons/fa";
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-  const links = [
-    { title: "Home", link: "/" },
-    { title: "About us", link: "/about-us" },
-    { title: "All Books", link: "/all-book" },
-    { title: "Cart", link: "/cart" },
-    { title: "Profile", link: "/profile" },
-    { title: "Details", link: "/details" },
-    
-  ];
+// Define styles as JavaScript objects
+const styles = {
+  frameWrapper: {
+    position: 'absolute',
+    width: '1163px',
+    height: '80px',
+    top: '34px',
+    left: '148px',
+    backgroundColor: '#f8eded',
+    borderRadius: '18px',
+    border: '1px solid',
+    borderColor: '#000000'
+  },
+  frame: {
+    display: 'flex',
+    width: '1163px',
+    height: '80px',
+    alignItems: 'center',
+    gap: '99px',
+    position: 'relative',
+    top: '-1px',
+    left: '-1px'
+  },
+  bookclubLogo: {
+    position: 'relative',
+    width: '114px',
+    height: '114px',
+    marginTop: '-17px',
+    marginBottom: '-17px',
+    objectFit: 'cover'
+  },
+  textWrapper: {
+    position: 'relative',
+    width: 'fit-content',
+    fontFamily: '"Inter", Helvetica',
+    fontWeight: '500',
+    color: '#000000',
+    fontSize: '24.3px',
+    letterSpacing: '0',
+    lineHeight: '34.7px',
+    whiteSpace: 'nowrap'
+  },
+  icon: {
+    position: 'relative',
+    width: '18px',
+    height: '20px'
+  },
+  akarIconsSearch: {
+    position: 'relative',
+    width: '28px',
+    height: '28px'
+  },
+  vector: {
+    position: 'relative',
+    width: '24.53px',
+    height: '22.06px'
+  }
+};
 
+const Navbar = () => {
   return (
-    <>
-    <nav className='flex bg-zinc-800 text-white px-8 py-4 items-center justify-between'>
-      <Link to='/' className='flex items-center'>
-        <img className='h-10 me-4' src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/457149112_890266963138475_7991011262612897768_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHGe4ESlbzh4fOzBfLbKGJ_-gqXKn4vm_f6Cpcqfi-b91ihh7_xnLOjbQ_g-2OzyGYNTkho30jNQTWz4M8t2ZZZ&_nc_ohc=fU2JkVem3HMQ7kNvgGF8haA&_nc_ht=scontent.fsgn2-6.fna&oh=00_AYBRSsfljQ19Ruethx99V_prLK5AcTUXQDNtfiG8d2cpgQ&oe=66D646FE"
-             alt='logo'
+    <div style={styles.frameWrapper}>
+      <div style={styles.frame}>
+        <Link to="/">
+          <img
+            style={styles.bookclubLogo}
+            src="img/bookclub-logo-2-1.png"
+            alt="Book Club Logo"
+          />
+        </Link>
+        <Link to="/" style={styles.textWrapper}>Main page</Link>
+        <Link to="/agenda" style={styles.textWrapper}>Agenda</Link>
+        <Link to="/" style={styles.textWrapper}>Book store</Link>
+        <Link to="/profile">
+          <img
+            style={styles.icon}
+            src="img/icon.svg"
+            alt="Profile Icon"
+          />
+        </Link>
+        <img
+          style={styles.akarIconsSearch}
+          src="img/akar-icons-search-1.svg"
+          alt="Search Icon"
         />
-        <h1 className='text-2xl font-semibold'>VGU BookInspired</h1>
-      </Link>
-      <div className='nav-links-bookheaven block md:flex items-center gap-4'>
-        <div className='hidden md:flex gap-4'>
-          {links.map((link, index) => (
-            <Link to={link.link} 
-                  className='hover:text-blue-500 transition-all duration-300' 
-                  key={index}>
-              {link.title}
-            </Link>
-          ))}
-        </div>
-        <div className='hidden md:flex gap-4'>
-          <Link to='/Signin' className='px-2 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-300'>Sign in</Link>
-          <Link to='/Signup' className='px-2 py-1 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all'>Sign up</Link>
-        </div>
-        <button className='text-white text-2xl hover:text-zinc-400'><FaGripLines />
-        </button>
+        <Link to="/cart">
+          <img
+            style={styles.vector}
+            src="img/vector.svg"
+            alt="Cart Icon"
+          />
+        </Link>
       </div>
-    </nav>
-    <div className='bg-zinc-800 h-screen absolute top-0 left-0 '></div>
-    </>
+    </div>
   );
 };
 
-export default Navbar
+export default Navbar;

@@ -83,8 +83,8 @@ const Allbooks = () => {
                         </div>
                     </div>
                 </div>
-                <div class="group-wrapper">
-                    <div class="overlap-wrapper">
+                <div className="group-wrapper">
+                    <div className="overlap-wrapper">
                         <div id="book-list" className="overlap-2">
                             <div className='my-8 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4'>
                                 {data && data.map((book, i) => (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './ViewBookDetails.css';
 
 const ViewBookDetails = () => {
   const { id } = useParams();
@@ -31,18 +32,112 @@ const ViewBookDetails = () => {
   }
 
   return (
-    <div className='px-12 py-8 flex'>
-      <div className='bg-zinc-800 rounded p-4'>
-        <img src={book.image} alt={book.title} className='h-[40vh] w-full object-cover'/>
-      </div>
-      <div className='p-4'>
-        <h2 className='text-3xl text-red'>{book.title}</h2>
-        <p className='text-gray-400'>Tác giả: {book.author}</p>
-        <p className='text-gray-400'>Tên Nhà Cung Cấp: {book.publisher}</p>
-        <p className='text-gray-400'>Số trang: {book.pages}</p>
-        <p className='text-yellow-500'>Giá: {book.price} đ</p>
-        <p className='text-blue'>Mô tả {book.description}</p>
-      </div>
+    <div className="single-product-overview">
+      <main className="frame-parent">
+        <section className="frame-group">
+          <div className="rectangle-parent">
+            <div className="frame-child"></div>
+            <div className="price-stock">
+
+              <div className="rectangle-group">
+                <div className="frame-item"></div>
+                <img
+                  className="asgaard-sofa-3"
+                  loading="lazy"
+                  alt=""
+                  src={book.image}
+                />
+                {/* Add discount and new labels if needed */}
+              </div>
+            </div>
+            <div className="product-images">
+              <div className="product-details-parent">
+                <div className="product-details">
+                  <h1 className="the-hunger-games-container">
+                    <p className="the-hunger-games">{book.title}</p>
+                  </h1>
+                  <div className="by-suzanne-collins-container">
+                    <span>By: </span>
+                    <span className="suzanne-collins">{book.author}</span>
+                  </div>
+                </div>
+                <div className="title-author">
+                  <div className="parent">
+                    <div className="div1">{book.price} đ</div>
+                    {book.original_price && (
+                      <div className="price-value">
+                        <div className="div2">{book.original_price} đ</div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="stock-info">
+                    <div className="stock-details">
+                      <div className="stock-labels">
+                        <div className="quantity-in-stock">Quantity in stock</div>
+                        <div className="publisher">Publisher:</div>
+                        <div className="binding">Pages</div>
+                        <div className="share">Share</div>
+                      </div>
+                      <div className="stock-labels1">
+                        <div className="div3">:</div>
+                        <div className="div4">:</div>
+                        <div className="div5">:</div>
+                        <div className="div6">:</div>
+                      </div>
+                    </div>
+                    <div className="stock-values">
+                      <div className="stock-data">{book.quantityInStock}</div>
+                      <div className="scholastic">{book.publisher}</div>
+                      <div className="paperback">{book.pages}</div>
+                      <div className="stock-values-inner">
+                        <div className="social-icons-parent">
+                          {/* Add social media icons here */}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="price">
+                <div className="rectangle-container">
+                  <div className="rectangle-div"></div>
+                  <div className="cart-separator-elements">-</div>
+                  <div className="div8">1</div>
+                  <div className="cart-separator-elements1">+</div>
+                </div>
+                <button className="group-button">
+                  <div className="frame-child1"></div>
+                  <div className="add-to-cart">Add To Cart</div>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="group-div">
+            <div className="frame-child2"></div>
+            <div className="frame-container">
+              <div className="line-parent">
+                <div className="line-div"></div>
+                <div className="frame-wrapper">
+                  <div className="overview-parent">
+                    <a className="overview">Overview</a>
+                    <h3 className="additional-information">
+                      Additional Information
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div className="could-you-survive-on-your-own-wrapper">
+                <h3 className="could-you-survive-container">
+                  <p className="could-you-survive">
+                    {book.description}
+                  </p>
+                </h3>
+              </div>
+            </div>
+            <div className="frame-child3"></div>
+          </div>
+        </section>
+      </main>
     </div>
   );
 };
