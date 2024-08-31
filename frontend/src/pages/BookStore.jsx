@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import '/style.css';
 import '/global.css';
 
-const Allbooks = () => {
+const BookStore = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
@@ -58,7 +58,7 @@ const Allbooks = () => {
                             </Link>
                             <Link to="/" className="text-wrapper-2">Main page</Link>
                             <Link to="/agenda" className="text-wrapper-2">Agenda</Link>
-                            <Link to="/all-book" className="text-wrapper-2">Book store</Link>
+                            <Link to="/" className="text-wrapper-2">Book store</Link>
                             <Link to="/profile">
                                 <img className="icon" src="/img/icon.svg" alt="Profile" />
                             </Link>
@@ -140,4 +140,4 @@ const Allbooks = () => {
     );
 };
 
-export default Allbooks;
+export default BookStore;

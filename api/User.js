@@ -100,6 +100,10 @@ router.get("/user", (req,res) => {
 router.get("/purchase", (req, res) => {
     res.render("purchase");
 })
+
+router.get("/customer", (req, res) => {
+    res.render("/customer")
+})
 // Signup
 router.post("/signup", (req, res) => {
     let { name, email, password } = req.body;
