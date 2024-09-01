@@ -23,6 +23,11 @@ const Signup = () => {
       if (response.data.status === "PENDING") {
         // Redirect to email verification page
         navigate('/user/email_verification?email=' + encodeURIComponent(email));
+      } else if (response.data.status === "SUCCESS") {
+        // Store the token in localStorage
+        localStorage.setItem('token', response.data.accesstoken);
+        // Redirect to bookstore page
+        navigate('/books');
       } else {
         setError(response.data.message);
       }

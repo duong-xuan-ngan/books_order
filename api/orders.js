@@ -11,17 +11,42 @@ const router = require("express").Router();
 
 //CREATE
 
-router.post("/", verifyToken, async (req, res) => {
-  const newOrder = new Order(req.body);
-
+// Add to cart
+router.post("/cart/add", verifyToken, async (req, res) => {
   try {
-    const savedOrder = await newOrder.save();
-    res.status(200).json(savedOrder);
+    const { bookId, quantity } = req.body;
+    const customerId = req.user.id;
+
+    let order = await Order.findOne({ customerId, status: 'cart' });
+
+    if (!order) {
+      order = new Order({
+        customerId,
+        books: [{ bookId, quantity }],
+        status: 'cart',
+        totalAmount: 0 // You'll need to calculate this
+      });
+    } else {
+      const existingBookIndex = order.books.findIndex(item => item.bookId.toString() === bookId);
+      if (existingBookIndex > -1) {
+        order.books[existingBookIndex].quantity += quantity;
+      } else {
+        order.books.push({ bookId, quantity });
+      }
+    }
+
+    // Recalculate total amount
+    // You'll need to fetch book prices and calculate the total
+
+    await order.save();
+    res.status(200).json(order);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({
+      message: "Failed to add item to cart",
+      error: err.message
+    });
   }
 });
-
 // UPDATE
 router.put("/:orderId", verifyTokenAndAdmin, async (req, res) => {
   try {

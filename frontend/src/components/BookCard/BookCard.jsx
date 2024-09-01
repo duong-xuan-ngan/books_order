@@ -1,18 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import './BookCard.css'; // Add this line to import the new CSS file
 
 const BookCard = ({ data }) => {
     return (
     <>
-        <Link to={`/details/${data._id}`}>
-            <div className='bg-zinc-800 rounded p-4 flex flex-col'>
-                <div className='bg-zinc-900 rounded flex items-center justify-center '>
-                    <img src={data.image} alt={data.title} className='h-[20vh] w-full object-cover'/>
+        <Link to={`/details/${data._id}`} className="book-card-link">
+            <div className='book-card'>
+                <div className='book-image-container'>
+                    <img src={data.image} alt={data.title} className='book-image'/>
                 </div>
-                <div className='mt-2'>
-                    <h3 className='text-white font-semibold'>{data.title}</h3>
-                    <p className='text-gray-400'>{data.author}</p>
-                    <p className='text-yellow-500'>${data.price}</p>
+                <div className='book-info'>
+                    <h3 className='book-title'>{data.title}</h3>
+                    <p className='book-author'>{data.author}</p>
+                    <p className='book-price'>${data.price}</p>
                 </div>
             </div>
         </Link>

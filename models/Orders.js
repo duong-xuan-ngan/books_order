@@ -3,20 +3,21 @@ const Schema = mongoose.Schema;
 
 // Book Schema and Model
 const orderSchema = new mongoose.Schema({
-    orderDate: { type: Date, required: true, default: Date.now },
-    totalAmount: { type: Number, required: true },
-    customerId: { type: mongoose.Schema.Types.ObjectId, ref: 'customer', required: true },
-    books: [
-        {
-          bookId: {
-            type: mongoose.Schema.Types.ObjectId, ref: 'Books', required: true,
-          },
-          quantity: {
-            type: Number,
-            default: 1,
-          },
+  orderDate: { type: Date, required: true, default: Date.now },
+  totalAmount: { type: Number, required: true },
+  customerId: { type: mongoose.Schema.Types.ObjectId, ref: 'customer', required: true },
+  books: [
+      {
+        bookId: {
+          type: mongoose.Schema.Types.ObjectId, ref: 'Books', required: true,
         },
-      ]
+        quantity: {
+          type: Number,
+          default: 1,
+        },
+      },
+  ],
+  status: { type: String, enum: ['cart', 'placed', 'completed'], default: 'cart' }
 });
 
 const Order = mongoose.model('Order', orderSchema);

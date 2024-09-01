@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const axios = require("axios");
+
 // MongoDB user model
 const User = require("./../models/user");
 // MongoDB user verification model
@@ -65,6 +67,18 @@ router.get("/email_verification", (req, res) => {
     res.render("email_verification", { email: email });
 })
 
+
+// Route to display the BookStore page
+router.get("/BookStore", async (req, res) => {
+    try {
+        const response = await axios.get("http://localhost:5000/user/books");
+        const books = response.data;
+        res.render("BookStore", { books }); // Changed 'data' to 'books'
+    } catch (err) {
+        console.error("Error fetching books:", err);
+        res.render("BookStore", { books: [], error: "Failed to fetch books. Please try again later." });
+    }
+});
 // Route to display signup page
 router.get("/signup", (req, res) => {
     res.render("signup");
@@ -101,9 +115,7 @@ router.get("/purchase", (req, res) => {
     res.render("purchase");
 })
 
-router.get("/customer", (req, res) => {
-    res.render("/customer")
-})
+
 // Signup
 router.post("/signup", (req, res) => {
     let { name, email, password } = req.body;

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/globals.css" />
+    <link rel="stylesheet" href="/styleguide.css" />
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+    <div class="shop">
+        <div class="div">
+            <div class="overlap">
+                <div class="header"></div>
+                <div class="group">
+                    <div class="overlap-group">
+                        <div class="div-wrapper"><div class="text-wrapper">Bookstore</div></div>
+                    </div>
+                </div>
+                <div class="frame-wrapper">
+                    <div class="frame">
+                        <img class="bookclub-logo" src="/img/bookclub-logo-2-1.png" alt="Bookclub Logo"/>
+                        <div class="text-wrapper-2">Main page</div>
+                        <div class="text-wrapper-2">Agenda</div>
+                        <div class="text-wrapper-2">Book store</div>
+                        <img class="icon" src="/img/icon.svg" alt="Icon"/>
+                        <img class="akar-icons-search" src="/img/akar-icons-search-1.svg" alt="Search"/>
+                        <img class="vector" src="/img/vector.svg" alt="Vector"/>
+                    </div>
+                </div>
+            </div>
+            <div class="group-2">
+                <div class="group-3">
+                    <div class="text-wrapper-3">Filter</div>
+                    <img class="system-uicons" src="/img/system-uicons-filtering.svg" alt="Filter"/>
+                </div>
+                <div class="group-4">
+                    <div class="text-wrapper-4">Sort by</div>
+                    <div class="overlap-group-wrapper">
+                        <div class="overlap-group-2"><div class="text-wrapper-5">Default</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="group-wrapper">
+                <div class="overlap-wrapper">
+                    <div class="overlap-2">
+                        <div class="rectangle"></div>
+                        <div class="frame-2">
+                            <div class="frame-3">
+                                <div class="featured-products">
+                                    <!-- Dynamic product content here, for example: -->
+                                    <% books.forEach(function(book) { %>
+                                    <div class="book-item">
+                                        <div class="product-image">
+                                            <img src="<%= book.image %>" alt="<%= book.title %>"/> <!-- Use 'image' for the book image -->
+                                            <% if (book.discount) { %>
+                                            <div class="discount-badge"><%= book.discount %>%</div> <!-- Discount badge -->
+                                            <% } %>
+                                        </div>
+                                        <div class="product-details">
+                                            <div class="product-name">
+                                                <p class="p"><%= book.title %></p> <!-- Use 'title' for the book name -->
+                                            </div>
+                                            <div class="price">
+                                                <div class="frame-4">
+                                                    <div class="fix-price"><%= book.price %></div> <!-- Use 'price' for the current price -->
+                                                    <div class="fix-price-2"><%= book.original_price %></div> <!-- Use 'original_price' for the original price -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }); %>
+                                </div>
+                                <!-- More content similar to the index.html structure -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="overlap-7">
+                <footer class="footer">
+                    <div class="overlap-8">
+                        <div class="group-7">
+                            <div class="group-8">
+                                <div class="group-9">
+                                    <div class="group-10">
+                                        <div class="group-11">
+                                            <div class="group-12">
+                                                <div class="text-wrapper-12">Landing Page</div>
+                                                <div class="text-wrapper-13">Agenda</div>
+                                                <div class="about">Bookstore</div>
+                                                <div class="text-wrapper-14">Contact</div>
+                                            </div>
+                                            <div class="text-wrapper-15">Links</div>
+                                        </div>
+                                        <div class="group-13">
+                                            <div class="text-wrapper-15">Help</div>
+                                            <div class="group-14">
+                                                <div class="text-wrapper-12">Payment Options</div>
+                                                <div class="text-wrapper-13">Returns</div>
+                                                <div class="text-wrapper-16">Privacy Policies</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Continue with the footer content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

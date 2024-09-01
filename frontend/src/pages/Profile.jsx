@@ -18,12 +18,12 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/user/customers', formData);
+      const response = await axios.post('/api/user/profile', formData, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
       console.log('Customer data saved:', response.data);
-      // Handle success (e.g., show a success message)
     } catch (error) {
       console.error('Error saving customer data:', error);
-      // Handle error (e.g., show an error message)
     }
   };
 

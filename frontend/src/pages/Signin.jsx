@@ -21,8 +21,9 @@ const Signin = () => {
       if (response.data.status === "SUCCESS") {
         // Store the token in localStorage
         localStorage.setItem('token', response.data.accesstoken);
-        // Redirect to home page or dashboard
-        navigate('/');
+        console.log('Token stored:', response.data.accesstoken); // Add this line to verify token storage
+        // Redirect to bookstore page
+        navigate('/books');
       } else {
         setError(response.data.message);
       }

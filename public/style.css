@@ -1,62 +1,869 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.shop {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
 }
 
-body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.shop .div {
+  background-color: #ffffff;
+  overflow: hidden;
+  width: 1440px;
+  height: 3159px;
+  position: relative;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 30px;
+.shop .overlap {
+  position: absolute;
+  width: 1440px;
+  height: 417px;
+  top: 0;
+  left: 0;
 }
 
-.form-container{
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.shop .header {
+  position: absolute;
+  width: 1440px;
+  height: 100px;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
 }
 
-.form-group{
-    margin-bottom: 15px;
+.shop .group {
+  position: absolute;
+  width: 1440px;
+  height: 416px;
+  top: 1px;
+  left: 0;
 }
 
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+.shop .overlap-group {
+  position: relative;
+  height: 423px;
+  top: -1px;
+  background-image: url(./img/rectangle-1.png);
+  background-size: cover;
+  background-position: 50% 50%;
 }
 
-.form-group input {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+.shop .div-wrapper {
+  position: relative;
+  width: 305px;
+  height: 90px;
+  top: 164px;
+  left: 568px;
 }
 
-.submit-btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #472dbb;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.shop .text-wrapper {
+  position: absolute;
+  width: 303px;
+  top: 0;
+  left: 0;
+  font-family: "Poppins", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 60px;
+  letter-spacing: 0;
+  line-height: normal;
 }
 
-.submit-btn hover {
-    background-color: #4565a0;
+.shop .frame-wrapper {
+  position: absolute;
+  width: 1163px;
+  height: 80px;
+  top: 34px;
+  left: 148px;
+  background-color: #f8eded;
+  border-radius: 18px;
+  border: 1px solid;
+  border-color: #000000;
 }
 
-p {
-    margin-top: 15px;
+.shop .frame {
+  display: flex;
+  width: 1163px;
+  height: 80px;
+  align-items: center;
+  gap: 99px;
+  position: relative;
+  top: -1px;
+  left: -1px;
+}
+
+.shop .bookclub-logo {
+  position: relative;
+  width: 114px;
+  height: 114px;
+  margin-top: -17px;
+  margin-bottom: -17px;
+  object-fit: cover;
+}
+
+.shop .text-wrapper-2 {
+  position: relative;
+  width: fit-content;
+  font-family: "Inter", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 24.3px;
+  letter-spacing: 0;
+  line-height: 34.7px;
+  white-space: nowrap;
+}
+
+.shop .icon {
+  position: relative;
+  width: 18px;
+  height: 20px;
+}
+
+.shop .akar-icons-search {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+
+.shop .vector {
+  position: relative;
+  width: 24.53px;
+  height: 22.06px;
+}
+
+.shop .group-2 {
+  position: absolute;
+  width: 1440px;
+  height: 100px;
+  top: 417px;
+  left: 0;
+  background-color: #f9f1e7;
+}
+
+.shop .group-3 {
+  position: absolute;
+  width: 87px;
+  height: 30px;
+  top: 35px;
+  left: 98px;
+}
+
+.shop .text-wrapper-3 {
+  position: absolute;
+  top: 0;
+  left: 37px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .system-uicons {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 2px;
+  left: 0;
+}
+
+.shop .group-4 {
+  position: absolute;
+  width: 290px;
+  height: 55px;
+  top: 22px;
+  left: 1052px;
+}
+
+.shop .text-wrapper-4 {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  font-family: "Poppins", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .overlap-group-wrapper {
+  position: absolute;
+  width: 190px;
+  height: 55px;
+  top: 0;
+  left: 100px;
+}
+
+.shop .overlap-group-2 {
+  position: relative;
+  width: 188px;
+  height: 55px;
+  background-color: #ffffff;
+}
+
+.shop .text-wrapper-5 {
+  position: absolute;
+  top: 12px;
+  left: 30px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 400;
+  color: #9f9f9f;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .group-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 564px;
+  left: 0;
+}
+
+.shop .overlap-wrapper {
+  position: relative;
+  width: 1440px;
+  height: 2051px;
+}
+
+.shop .overlap-2 {
+  position: relative;
+  height: 2051px;
+}
+
+.shop .rectangle {
+  position: absolute;
+  width: 1440px;
+  height: 777px;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+}
+
+.shop .frame-2 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+  position: absolute;
+  top: 17px;
+  left: 99px;
+}
+
+.shop .frame-3 {
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.shop .featured-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Individual book item */
+.book-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Add margin-bottom for spacing between rows */
+}
+
+/* Book image */
+.book-item .product-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Book details */
+.book-item .product-details {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Book name */
+.book-item .product-name .p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin: 0; /* Remove default margin */
+}
+
+/* Book price */
+.book-item .price {
+  margin-top: 5px;
+}
+
+.book-item .fix-price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e74c3c;
+}
+
+.book-item .fix-price-2 {
+  font-size: 14px;
+  font-weight: 400;
+  color: #999;
+  text-decoration: line-through;
+  margin-top: 5px; /* Add margin-top for spacing */
+}
+
+/* Discount badge */
+.book-item .discount-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.shop .frame-4 {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+
+.shop .fix-price {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 600;
+  color: var(--color-gray-1);
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 30px;
+  white-space: nowrap;
+}
+
+.shop .fix-price-2 {
+  position: relative;
+  width: fit-content;
+  font-family: "Poppins", Helvetica;
+  font-weight: 400;
+  color: var(--color-gray-4);
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 24px;
+  text-decoration: line-through;
+  white-space: nowrap;
+}
+
+.shop .product-name {
+  position: absolute;
+  width: 193px;
+  height: 38px;
+  top: 0;
+  left: 0;
+}
+
+.shop .p {
+  font-family: "Poppins", Helvetica;
+  font-weight: 300;
+  color: var(--color-gray-1);
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 19.2px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.shop .div-3 {
+  position: absolute;
+  width: 284px;
+  height: 301px;
+  top: 0;
+  left: 1px;
+  background-image: url(./img/image-2-5.png);
+  background-size: 100% 100%;
+}
+
+.shop .label {
+  left: 212px;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  top: 24px;
+}
+
+.shop .overlap-group-wrapper-2 {
+  width: 50px;
+  height: 48px;
+}
+
+.shop .overlap-group-3 {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-red-accents);
+  border-radius: 24px;
+}
+
+.shop .text-wrapper-6 {
+  position: absolute;
+  top: 12px;
+  left: 5px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 500;
+  color: var(--color-white);
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.shop .image {
+  position: absolute;
+  width: 200px;
+  height: 303px;
+  top: -1px;
+  left: 40px;
+}
+
+.shop .overlap-3 {
+  position: relative;
+  height: 446px;
+}
+
+.shop .description-2 {
+  position: absolute;
+  top: 317px;
+  width: 191px;
+  height: 99px;
+  left: 16px;
+}
+
+.shop .price-2 {
+  width: 96px;
+  position: absolute;
+  height: 30px;
+  top: 69px;
+  left: 0;
+}
+
+.shop .pop-up {
+  position: absolute;
+  width: 285px;
+  height: 446px;
+  top: 0;
+  left: 0;
+}
+
+.shop .overlay {
+  position: absolute;
+  width: 285px;
+  height: 446px;
+  top: 0;
+  left:   446px;
+  top: 0;
+  left: 0;
+  background-color: var(--color-gray-1);
+  opacity: 0.72;
+}
+
+.shop .button {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: absolute;
+  top: 175px;
+  left: 16px;
+}
+
+.shop .overlap-group-5 {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-green-accents);
+  border-radius: 24px;
+}
+
+.shop .text-wrapper-8 {
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 500;
+  color: var(--color-white);
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.shop .product-name-2 {
+  width: 195px;
+  height: 61px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.shop .overlap-group-6 {
+  position: relative;
+  width: 191px;
+  height: 61px;
+}
+
+.shop .sort-description {
+  position: absolute;
+  top: 37px;
+  left: 0;
+  font-family: "Poppins", Helvetica;
+  font-weight: 500;
+  color: var(--color-gray-3);
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.shop .overlap-4 {
+  position: relative;
+  width: 50px;
+  height: 48px;
+}
+
+.shop .overlap-group-wrapper-3 {
+  position: absolute;
+  width: 50px;
+  height: 48px;
+  top: 0;
+  left: 0;
+}
+
+.shop .frame-6 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 38px;
+  padding: 30px 0px 0px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.shop .group-5 {
+  position: relative;
+  width: 62px;
+  height: 60px;
+}
+
+.shop .overlap-group-7 {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary);
+  border-radius: 10px;
+}
+
+.shop .text-wrapper-9 {
+  left: 27px;
+  color: #ffffff;
+  position: absolute;
+  top: 15px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .overlap-5 {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: #f8f4e1;
+  border-radius: 10px;
+}
+
+.shop .text-wrapper-10 {
+  left: 24px;
+  color: #000000;
+  position: absolute;
+  top: 15px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .group-6 {
+  position: relative;
+  width: 100px;
+  height: 60px;
+  margin-right: -2px;
+}
+
+.shop .overlap-6 {
+  position: relative;
+  width: 98px;
+  height: 60px;
+  background-color: #f8f4e1;
+  border-radius: 10px;
+}
+
+.shop .text-wrapper-11 {
+  position: absolute;
+  top: 15px;
+  left: 28px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 300;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .overlap-7 {
+  position: absolute;
+  width: 1440px;
+  height: 505px;
+  top: 2659px;
+  left: 0;
+}
+
+.shop .footer {
+  position: absolute;
+  width: 1440px;
+  height: 505px;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+}
+
+.shop .overlap-8 {
+  position: relative;
+  width: 1442px;
+  height: 507px;
+  top: -1px;
+  left: -1px;
+  background-color: #ffffff;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-color: #0000002b;
+}
+
+.shop .group-7 {
+  position: relative;
+  width: 1240px;
+  height: 419px;
+  top: 48px;
+  left: 100px;
+}
+
+.shop .group-8 {
+  position: absolute;
+  width: 503px;
+  height: 312px;
+  top: 0;
+  left: 423px;
+}
+
+.shop .group-9 {
+  position: relative;
+  height: 312px;
+}
+
+.shop .group-10 {
+  position: absolute;
+  width: 352px;
+  height: 312px;
+  top: 0;
+  left: 0;
+}
+
+.shop .group-11 {
+  position: absolute;
+  width: 114px;
+  height: 312px;
+  top: 0;
+  left: 0;
+}
+
+.shop .group-12 {
+  position: absolute;
+  width: 118px;
+  height: 233px;
+  top: 79px;
+  left: 2px;
+}
+
+.shop .text-wrapper-12 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Poppins", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .text-wrapper-13 {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  font-family: "Poppins", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .about {
+  position: absolute;
+  top: 140px;
+  left: 0;
+  font-family: "Poppins", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .text-wrapper-14 {
+  position: absolute;
+  top: 209px;
+  left: 0;
+  font-family: "Poppins", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .text-wrapper-15 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Poppins", Helvetica;
+  font-weight: 500;
+  color: #9f9f9f;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .group-13 {
+  position: absolute;
+  width: 142px;
+  height: 242px;
+  top: 0;
+  left: 212px;
+}
+
+.shop .group-14 {
+  position: absolute;
+  width: 146px;
+  height: 163px;
+  top: 79px;
+  left: 0;
+}
+
+.shop .text-wrapper-16 {
+  position: absolute;
+  top: 139px;
+  left: 0;
+  font-family: "Poppins", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .newsletter-wrapper {
+  position: absolute;
+  width: 81px;
+  height: 24px;
+  top: 2px;
+  left: 424px;
+}
+
+.shop .group-15 {
+  position: absolute;
+  width: 1242px;
+  height: 59px;
+  top: 360px;
+  left: 0;
+}
+
+.shop .line {
+  position: absolute;
+  width: 1240px;
+  height: 1px;
+  top: -1px;
+  left: 0;
+  object-fit: cover;
+}
+
+.shop .element-furino-all {
+  position: absolute;
+  top: 35px;
+  left: 2px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .text-wrapper-17 {
+  position: absolute;
+  top: 126px;
+  left: 993px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.shop .social-icons {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 127px;
+  left: 947px;
+}
+
+.shop .img {
+  position: absolute;
+  width: 420px;
+  height: 408px;
+  top: 0;
+  left: 61px;
+  object-fit: cover;
 }

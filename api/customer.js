@@ -1,5 +1,5 @@
 const Customer = require("../models/Customer");
-const { verifyTokenAndAdmin, verifyTokenAndAuthorization } = require("./verifyToken");
+const { verifyTokenAndAdmin, verifyTokenAndAuthorization, verifyToken } = require("./verifyToken");
 const router = require("express").Router();
 
 // CREATE
@@ -32,7 +32,22 @@ router.get("/find/:id", verifyTokenAndAuthorization, async (req, res) => {
   }
 });
 
-//GET ALL Customers
+// GET CUSTOMER PROFILE
+router.get('/customer', verifyToken, async (req, res) => {
+  try {
+    console.log("Fetching customer profile for user ID:", req.user.id); // Debugging line
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json(user);
+  } catch (err) {
+    console.error("Error fetching customer profile:", err); // Debugging line
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
+
+// GET ALL CUSTOMERS
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
   try {
     const customers = await Customer.find();
@@ -45,7 +60,7 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-//UPDATE
+// UPDATE
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const updatedCustomer = await Customer.findByIdAndUpdate(
@@ -67,7 +82,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-//DELETE
+// DELETE
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const deletedCustomer = await Customer.findByIdAndDelete(req.params.id);

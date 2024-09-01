@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ViewBookDetails.css';
 
 const ViewBookDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,6 +31,37 @@ const ViewBookDetails = () => {
   if (error) {
     return <div className='text-red-500'>{error}</div>;
   }
+
+  const checkUserLoggedIn = () => {
+    const token = localStorage.getItem('token');
+    return !!token; // Returns true if token exists, false otherwise
+  };
+
+  const handleAddToCart = async () => {
+    try {
+      if (!checkUserLoggedIn()) {
+        navigate('/signin');
+        return;
+      }
+  
+      const token = localStorage.getItem('token');
+      console.log('Token:', token); // Debugging line
+  
+      const addToCartResponse = await axios.post('http://localhost:5000/order/cart/add', {
+        bookId: book._id,
+        quantity: 1 // Assuming quantity is 1, you can adjust as needed
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+  
+      console.log('Add to cart response:', addToCartResponse.data); // Debugging line
+  
+      alert('Book added to cart successfully!');
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      alert('Failed to add book to cart. Please try again.');
+    }
+  };
 
   return (
     <div className="single-product-overview">
@@ -105,7 +137,7 @@ const ViewBookDetails = () => {
                   <div className="div8">1</div>
                   <div className="cart-separator-elements1">+</div>
                 </div>
-                <button className="group-button">
+                <button className="group-button" onClick={handleAddToCart}>
                   <div className="frame-child1"></div>
                   <div className="add-to-cart">Add To Cart</div>
                 </button>

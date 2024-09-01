@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules'; 
+import 'swiper/css';
+import 'swiper/css/pagination';
 import axios from "axios";
 import Loader from '../components/Loader/Loader';
 import BookCard from '../components/BookCard/BookCard';
 import { Link } from 'react-router-dom';
 import '/style.css';
 import '/global.css';
+
+
 
 const BookStore = () => {
     const [loading, setLoading] = useState(true);
@@ -86,7 +92,40 @@ const BookStore = () => {
                 <div className="group-wrapper">
                     <div className="overlap-wrapper">
                         <div id="book-list" className="overlap-2">
-                            <div className='my-8 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4'>
+                            <Swiper
+                                slidesPerView={1}
+                                spaceBetween={10}
+                                pagination={{
+                                    clickable: true,
+                                }}
+                                breakpoints={{
+                                    640: {
+                                        slidesPerView: 2,
+                                        spaceBetween: 20,
+                                    },
+                                    768: {
+                                        slidesPerView: 4,
+                                        spaceBetween: 40,
+                                    },
+                                    1024: {
+                                        slidesPerView: 5,
+                                        spaceBetween: 50,
+                                    },
+                                }}
+                                modules={[Pagination]}
+                                className="mySwiper"
+                            >
+                                <SwiperSlide>Slide 1</SwiperSlide>
+                                <SwiperSlide>Slide 2</SwiperSlide>
+                                <SwiperSlide>Slide 3</SwiperSlide>
+                                <SwiperSlide>Slide 4</SwiperSlide>
+                                <SwiperSlide>Slide 5</SwiperSlide>
+                                <SwiperSlide>Slide 6</SwiperSlide>
+                                <SwiperSlide>Slide 7</SwiperSlide>
+                                <SwiperSlide>Slide 8</SwiperSlide>
+                                <SwiperSlide>Slide 9</SwiperSlide>
+                            </Swiper>
+                            <div className='book-grid'>
                                 {data && data.map((book, i) => (
                                     <BookCard key={book._id || i} data={book} />
                                 ))}
