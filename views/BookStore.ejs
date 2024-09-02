@@ -57,15 +57,14 @@
                                             <% } %>
                                         </div>
                                         <div class="product-details">
-                                            <div class="product-name">
-                                                <p class="p"><%= book.title %></p> <!-- Use 'title' for the book name -->
-                                            </div>
                                             <div class="price">
                                                 <div class="frame-4">
-                                                    <div class="fix-price"><%= book.price %></div> <!-- Use 'price' for the current price -->
-                                                    <div class="fix-price-2"><%= book.original_price %></div> <!-- Use 'original_price' for the original price -->
+                                                    <div class="fix-price"><%= book.price %> d</div> <!-- Use 'price' for the current price -->
+                                                    <div class="fix-price-2"><%= book.original_price %> d</div> <!-- Use 'original_price' for the original price -->
                                                 </div>
+                                                
                                             </div>
+                                            <div><%= book.title %></div> <!-- Use 'title' for the book name -->
                                         </div>
                                     </div>
                                     <% }); %>
