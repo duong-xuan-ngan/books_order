@@ -20,14 +20,12 @@ const nodemailer = require("nodemailer");
 
 // Author
 const authorRoute = require("./Authors");
-// Product
+// Book
 const productRouter = require("./books");
 // Customer
 const customerRouter = require("./customer");
 // Orders
-const OrderRouter = require("./orders");
-// Cart
-const cartRouter = require("./carts");
+
 
 
 
@@ -79,6 +77,18 @@ router.get("/BookStore", async (req, res) => {
         res.render("BookStore", { books: [], error: "Failed to fetch books. Please try again later." });
     }
 });
+
+router.get('/books/:id', async (req, res) => {
+    try {
+      const book = await Book.findById(req.params.id);
+      if (!book) {
+        return res.status(404).send('Book not found');
+      }
+      res.render('BookDetails', { book });
+    } catch (err) {
+      res.status(500).send('Server error');
+    }
+  });
 // Route to display signup page
 router.get("/signup", (req, res) => {
     res.render("signup");
@@ -608,8 +618,7 @@ router.post("/reset/:token", (req, res) => {
 
 router.use("/authors", authorRoute);
 router.use("/books", productRouter);
-router.use("/order", OrderRouter);
+
 router.use("/customers", customerRouter);
 // router.use("/author", authorRouter);
-router.use("/cart", cartRouter)
 module.exports = router;

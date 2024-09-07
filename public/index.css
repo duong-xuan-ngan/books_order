@@ -1,0 +1,1223 @@
+body {
+    margin: 0;
+    line-height: normal;
+  }
+  
+  :root {
+    /* fonts */
+    --font-poppins: Poppins;
+    --font-inter: Inter;
+  
+    /* font sizes */
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --font-size-5xl: 24px;
+    --font-size-lgi: 19px;
+    --font-size-7xl-2: 26.2px;
+    --font-size-2xl: 21px;
+    --font-size-5xl-3: 24.3px;
+  
+    /* Colors */
+    --color-white1: #fff;
+    --color-black: #000;
+    --color-gainsboro: #d9d9d9;
+    --color-gray-4: #b0b0b0;
+    --color-darkgray-100: #9f9f9f;
+    --color-gray-1: #3a3a3a;
+    --color-linen: #f9f1e7;
+    --color-green-accents: #2ec1ac;
+    --color-red-accents: #e97171;
+    --color-lavenderblush: #f8eded;
+  
+    /* Gaps */
+    --gap-17xl: 36px;
+    --gap-lg: 18px;
+    --gap-5xl: 24px;
+    --gap-xl: 20px;
+    --gap-36xl: 55px;
+    --gap-22xl-4: 41.4px;
+    --gap-smi: 13px;
+    --gap-mini: 15px;
+  
+    /* Paddings */
+    --padding-29xl: 48px;
+    --padding-xl: 20px;
+    --padding-6xl: 25px;
+    --padding-11xs: 2px;
+    --padding-30xl: 49px;
+    --padding-lg: 18px;
+    --padding-2xl: 21px;
+  
+    /* Border radiuses */
+    --br-mini: 15px;
+    --br-3xs: 10px;
+    --br-lg: 18px;
+  }
+  
+
+
+
+.frame-child {
+    height: 728px;
+    flex: 1;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .additional-information,
+  .overview {
+    margin: 0 !important;
+    position: absolute;
+    font-size: inherit;
+    font-family: inherit;
+    display: inline-block;
+    z-index: 3;
+  }
+  .overview {
+    top: 47.9px;
+    left: 505px;
+    font-weight: 400;
+    min-width: 112px;
+  }
+  .additional-information {
+    width: 283px;
+    top: 48px;
+    right: 463px;
+    font-weight: 500;
+    color: var(--color-black);
+  }
+  .vector-parent {
+    width: 100%;
+    margin: 0 !important;
+    position: absolute;
+    top: 810px;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 100%;
+  }
+  .single-product-additional-info-child {
+    width: calc(100% + 1px);
+    height: 1px;
+    position: absolute;
+    margin: 0 !important;
+    top: 810px;
+    right: -1px;
+    left: 0;
+    border-top: 1px solid var(--color-gainsboro);
+    box-sizing: border-box;
+    z-index: 2;
+  }
+  .navi-frame {
+    height: 80px;
+    width: 1163px;
+    position: relative;
+    border-radius: var(--br-lg);
+    background-color: var(--color-lavenderblush);
+    border: 1px solid var(--color-black);
+    box-sizing: border-box;
+    display: none;
+    max-width: 100%;
+    z-index: 0;
+  }
+  .bookclub-logo-2-icon {
+    height: 114px;
+    width: 114px;
+    position: absolute;
+    margin: 0 !important;
+    top: calc(50% - 57px);
+    left: 0;
+    object-fit: cover;
+    z-index: 1;
+  }
+  .agenda,
+  .main-page {
+    text-decoration: none;
+    font-weight: 500;
+    color: inherit;
+    display: inline-block;
+  }
+  .main-page {
+    position: relative;
+    line-height: 34.66px;
+    min-width: 122px;
+    white-space: nowrap;
+    z-index: 1;
+  }
+  .agenda {
+    line-height: 35px;
+    min-width: 90px;
+  }
+  .agenda,
+  .book-store,
+  .icon {
+    position: relative;
+    z-index: 1;
+  }
+  .book-store {
+    text-decoration: none;
+    line-height: 35px;
+    font-weight: 500;
+    color: inherit;
+    display: inline-block;
+    min-width: 125px;
+    white-space: nowrap;
+  }
+  .icon {
+    width: 16px;
+    height: 18px;
+  }
+  .icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 8.5px 0 0;
+  }
+  .akar-iconssearch {
+    width: 28px;
+    height: 28px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .akar-iconssearch-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 3.5px 0 0;
+  }
+  .cart-icon {
+    width: 24.5px;
+    height: 22.1px;
+    position: relative;
+    z-index: 1;
+  }
+  .cart-icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 6.5px 0 0;
+  }
+  .header,
+  .navi-frame-parent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  .navi-frame-parent {
+    width: 1163px;
+    border-radius: var(--br-lg);
+    background-color: var(--color-lavenderblush);
+    border: 1px solid var(--color-black);
+    justify-content: space-between;
+    padding: var(--padding-2xl) 50px var(--padding-2xl) 213px;
+    position: relative;
+    gap: var(--gap-xl);
+  }
+  .header {
+    align-self: stretch;
+    justify-content: center;
+    padding: 0 var(--padding-2xl) 0 var(--padding-xl);
+    text-align: left;
+    font-size: var(--font-size-5xl-3);
+    color: var(--color-black);
+    font-family: var(--font-inter);
+  }
+  .frame-item {
+    height: 820px;
+    width: 1440px;
+    position: relative;
+    background-color: var(--color-white1);
+    display: none;
+    max-width: 100%;
+  }
+  .product-gallery-child {
+    height: 80px;
+    width: 76px;
+    position: relative;
+    object-fit: cover;
+    z-index: 1;
+  }
+  .frame-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: var(--br-3xs);
+    background-color: var(--color-linen);
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+  .asgaard-sofa-3 {
+    position: absolute;
+    width: calc(100% - 23px);
+    top: 16px;
+    right: 11px;
+    left: 12px;
+    max-width: 100%;
+    overflow: hidden;
+    height: 468px;
+    object-fit: cover;
+    z-index: 1;
+  }
+  .overlay-shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background-color: var(--color-red-accents);
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+  .div {
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    line-height: 150%;
+    font-weight: 500;
+    display: inline-block;
+    width: 38px;
+    height: 24px;
+    min-width: 38px;
+    z-index: 3;
+  }
+  .overlay-shape-parent {
+    position: absolute;
+    top: 0.1px;
+    left: 375px;
+    width: 48px;
+    height: 48px;
+  }
+  .new-child {
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background-color: var(--color-green-accents);
+    width: 100%;
+    height: 100%;
+  }
+  .new,
+  .new-child,
+  .new1 {
+    position: absolute;
+  }
+  .new1 {
+    top: 18.2px;
+    left: 8px;
+    line-height: 150%;
+    font-weight: 500;
+    display: inline-block;
+    width: 35px;
+    height: 36.5px;
+  }
+  .new {
+    top: 129.2px;
+    left: 375px;
+    width: 48px;
+    height: 73px;
+    display: none;
+  }
+  .rectangle-group {
+    height: 500px;
+    flex: 1;
+    position: relative;
+    border-radius: var(--br-3xs);
+    background-color: var(--color-linen);
+    min-width: 275px;
+    max-width: 100%;
+    z-index: 1;
+  }
+  .product-gallery {
+    width: 530px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 31px;
+    min-width: 530px;
+    max-width: 100%;
+  }
+  .the-hunger-games,
+  .the-hunger-games1 {
+    margin: 0;
+  }
+  .the-hunger-games-container {
+    margin: 0;
+    position: relative;
+    font-size: inherit;
+    line-height: 120%;
+    font-weight: 400;
+    font-family: inherit;
+    z-index: 1;
+  }
+  .suzanne-collins {
+    text-decoration: underline;
+    color: #81cf34;
+  }
+  .by-suzanne-collins-container {
+    width: 157px;
+    position: relative;
+    font-size: var(--font-size-base);
+    line-height: 20px;
+    font-weight: 300;
+    text-align: center;
+    display: inline-block;
+    z-index: 2;
+    color: var(--color-black);
+  }
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 7px;
+  }
+  .div1,
+  .div2 {
+    position: relative;
+  }
+  .div1 {
+    line-height: 150%;
+    font-weight: 500;
+    display: inline-block;
+    min-width: 107px;
+    z-index: 1;
+  }
+  .div2 {
+    align-self: stretch;
+    text-decoration: line-through;
+    line-height: 23px;
+    z-index: 2;
+  }
+  .parent,
+  .wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .wrapper {
+    flex: 1;
+    flex-direction: column;
+    padding: 6px 0 0;
+    font-size: 15px;
+    color: var(--color-gray-4);
+  }
+  .parent {
+    width: 227px;
+    flex-direction: row;
+    gap: var(--gap-xl);
+  }
+  .quantity-in-stock {
+    position: relative;
+  }
+  .binding,
+  .distributor,
+  .publisher,
+  .share {
+    align-self: stretch;
+    position: relative;
+  }
+  .details-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap-smi);
+  }
+  .div3,
+  .div4,
+  .div5,
+  .div6,
+  .div7 {
+    position: relative;
+    font-weight: 500;
+    display: inline-block;
+    min-width: 4px;
+  }
+  .details,
+  .details-list1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap-smi);
+  }
+  .details {
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gap-mini);
+  }
+  .paperback,
+  .scholastic,
+  .scholastic1,
+  .value-list {
+    align-self: stretch;
+    position: relative;
+  }
+  .social-icons1,
+  .social-icons2,
+  .social-icons3,
+  .social-icons4 {
+    height: 20px;
+    width: 20px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    min-height: 20px;
+  }
+  .social-icons,
+  .social-icons-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .social-icons {
+    flex: 1;
+    justify-content: space-between;
+    gap: var(--gap-xl);
+  }
+  .social-icons-wrapper {
+    align-self: stretch;
+    justify-content: flex-start;
+  }
+  .details-values {
+    flex: 1;
+    flex-direction: column;
+    gap: var(--gap-smi);
+  }
+  .details-parent,
+  .details-values,
+  .frame-group,
+  .title-parent {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .details-parent {
+    align-self: stretch;
+    flex-direction: row;
+    gap: 12px;
+    z-index: 2;
+    font-size: var(--font-size-base);
+    color: var(--color-darkgray-100);
+  }
+  .frame-group,
+  .title-parent {
+    flex-direction: column;
+  }
+  .frame-group {
+    width: 320px;
+    gap: 16px;
+    font-size: var(--font-size-5xl);
+  }
+  .title-parent {
+    gap: var(--gap-5xl);
+  }
+  .rectangle-div {
+    height: 64px;
+    width: 123px;
+    position: relative;
+    border-radius: var(--br-3xs);
+    background-color: var(--color-white1);
+    border: 1px solid var(--color-darkgray-100);
+    box-sizing: border-box;
+    flex-shrink: 0;
+    display: none;
+  }
+  .div8 {
+    min-width: 9px;
+  }
+  .div10,
+  .div8,
+  .div9 {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+  }
+  .div9 {
+    font-weight: 500;
+    min-width: 6px;
+  }
+  .div10 {
+    min-width: 11px;
+  }
+  .rectangle-container {
+    width: 123px;
+    border-radius: var(--br-3xs);
+    background-color: var(--color-white1);
+    border: 1px solid var(--color-darkgray-100);
+    box-sizing: border-box;
+    overflow-x: auto;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: var(--padding-lg) 13px var(--padding-lg) 14px;
+    gap: var(--gap-xl);
+    z-index: 1;
+  }
+  .frame-child1 {
+    height: 64px;
+    width: 215px;
+    position: relative;
+    border-radius: var(--br-mini);
+    border: 1px solid var(--color-black);
+    box-sizing: border-box;
+    display: none;
+  }
+  .add-to-cart {
+    position: relative;
+    font-size: 20px;
+    font-family: var(--font-poppins);
+    color: var(--color-black);
+    text-align: left;
+    display: inline-block;
+    min-width: 119px;
+    z-index: 1;
+  }
+  .group-button {
+    cursor: pointer;
+    border: 1px solid var(--color-black);
+    padding: 15px var(--padding-29xl);
+    background-color: transparent;
+    border-radius: var(--br-mini);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    white-space: nowrap;
+    z-index: 1;
+  }
+  .group-button:hover {
+    background-color: rgba(51, 51, 51, 0.09);
+    border: 1px solid #333;
+    box-sizing: border-box;
+  }
+  .frame-container {
+    flex-direction: row;
+    gap: var(--gap-lg);
+    font-size: var(--font-size-base);
+    color: var(--color-black);
+  }
+  .frame-container,
+  .product-info,
+  .rectangle-parent {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 100%;
+  }
+  .product-info {
+    flex-direction: column;
+    gap: var(--gap-36xl);
+    min-width: 510px;
+    font-size: 42px;
+    color: var(--color-gray-1);
+  }
+  .rectangle-parent {
+    align-self: stretch;
+    flex-direction: row;
+    padding: 35px 99px;
+    box-sizing: border-box;
+    gap: 106px;
+    min-height: 820px;
+  }
+  .author,
+  .distributor1,
+  .publlisher {
+    align-self: stretch;
+    position: relative;
+  }
+  .genre,
+  .pages,
+  .publication-year {
+    position: relative;
+  }
+  .genre,
+  .pages {
+    align-self: stretch;
+  }
+  .pages {
+    height: 48px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .header-names {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap-22xl-4);
+  }
+  .value-placeholder,
+  .value-placeholder1,
+  .value-placeholder2,
+  .value-placeholder3,
+  .value-placeholder4,
+  .value-placeholder5 {
+    align-self: stretch;
+    position: relative;
+    font-weight: 500;
+  }
+  .value-placeholder5 {
+    height: 44px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .detail-header-list,
+  .detail-values-list {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .detail-values-list {
+    width: 13.1px;
+    flex-direction: column;
+    gap: var(--gap-22xl-4);
+  }
+  .detail-header-list {
+    flex: 1;
+    flex-direction: row;
+    gap: 43.6px;
+    min-width: 179px;
+  }
+  .scholarstic,
+  .scholarstic1,
+  .specific-value-list,
+  .suzanne-collins1 {
+    align-self: stretch;
+    position: relative;
+  }
+  .dystopian-fiction {
+    position: relative;
+  }
+  .specific-value-list1 {
+    align-self: stretch;
+    position: relative;
+  }
+  .specific-values {
+    width: 226px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 0 8px;
+    box-sizing: border-box;
+    gap: var(--gap-22xl-4);
+    min-width: 226px;
+  }
+  .additional-details,
+  .detail-headers {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    max-width: 100%;
+  }
+  .detail-headers {
+    width: 521.3px;
+    justify-content: flex-start;
+    gap: 19.6px;
+    z-index: 3;
+  }
+  .additional-details {
+    width: 1348px;
+    justify-content: center;
+    padding: 0 var(--padding-xl);
+    box-sizing: border-box;
+    margin-top: -28px;
+    font-size: var(--font-size-7xl-2);
+    color: var(--color-black);
+  }
+  .frame-parent {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    max-width: 100%;
+    text-align: left;
+    font-size: var(--font-size-base);
+    color: var(--color-white1);
+    font-family: var(--font-poppins);
+  }
+  .footer-divider {
+    align-self: stretch;
+    height: 1px;
+    position: relative;
+    border-top: 1px solid var(--color-gainsboro);
+    box-sizing: border-box;
+  }
+  .footer-background {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    margin: 0 !important;
+    top: 0;
+    right: 0;
+    bottom: -0.5px;
+    left: 0;
+    background-color: var(--color-white1);
+    border-top: 1px solid rgba(0, 0, 0, 0.17);
+    box-sizing: border-box;
+  }
+  .copyright-2021-by,
+  .ring-road-4 {
+    margin: 0;
+  }
+  .university-drive-suite-container {
+    width: 285px;
+    position: relative;
+    display: none;
+    flex-shrink: 0;
+  }
+  .funiro {
+    width: 286px;
+    position: relative;
+    font-size: var(--font-size-5xl);
+    display: none;
+    color: var(--color-black);
+  }
+  .about,
+  .contact,
+  .home,
+  .links,
+  .shop {
+    position: relative;
+    font-weight: 500;
+    display: inline-block;
+    min-width: 40px;
+  }
+  .about,
+  .contact,
+  .home,
+  .shop {
+    min-width: 110px;
+  }
+  .about,
+  .contact,
+  .shop {
+    min-width: 64px;
+  }
+  .about,
+  .contact {
+    min-width: 81px;
+  }
+  .contact {
+    min-width: 66px;
+  }
+  .home-parent {
+    flex-direction: column;
+    gap: 45.7px;
+  }
+  .frame-div,
+  .home-parent,
+  .links-parent {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .frame-div {
+    flex-direction: row;
+    padding: 0 0 0 var(--padding-11xs);
+    color: var(--color-black);
+  }
+  .links-parent {
+    flex-direction: column;
+    gap: var(--gap-36xl);
+    min-width: 112px;
+  }
+  .help {
+    display: inline-block;
+    min-width: 37px;
+  }
+  .help,
+  .payment-options,
+  .privacy-policies,
+  .returns {
+    position: relative;
+    font-weight: 500;
+  }
+  .privacy-policies,
+  .returns {
+    display: inline-block;
+    min-width: 62px;
+  }
+  .privacy-policies {
+    min-width: 124px;
+  }
+  .payment-options-parent {
+    align-self: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 45.5px;
+    color: var(--color-black);
+  }
+  .frame-parent2,
+  .help-parent,
+  .payment-options-parent {
+    display: flex;
+    align-items: flex-start;
+  }
+  .help-parent {
+    width: 140px;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--gap-36xl);
+    min-width: 140px;
+  }
+  .frame-parent2 {
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 229px;
+    max-width: 100%;
+    gap: var(--gap-xl);
+  }
+  .newsletter {
+    position: relative;
+    font-weight: 500;
+    display: inline-block;
+    min-width: 79px;
+  }
+  .enter-your-email,
+  .line-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .line-div {
+    height: 8.33%;
+    width: 70.63%;
+    top: 100%;
+    right: 29.37%;
+    bottom: -8.33%;
+    border-top: 1px solid var(--color-black);
+    box-sizing: border-box;
+  }
+  .frame-child2,
+  .subscribe {
+    position: absolute;
+    left: 73.78%;
+  }
+  .subscribe {
+    top: 0;
+    font-weight: 500;
+    color: var(--color-black);
+  }
+  .frame-child2 {
+    height: 8.33%;
+    width: 26.92%;
+    top: 100%;
+    right: -0.7%;
+    bottom: -8.33%;
+    border-top: 1px solid var(--color-black);
+    box-sizing: border-box;
+  }
+  .enter-your-email-address-parent {
+    height: 24px;
+    width: 286px;
+    position: relative;
+    display: none;
+    font-size: var(--font-size-sm);
+  }
+  .frame-wrapper1,
+  .newsletter-parent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .frame-wrapper1 {
+    flex-direction: column;
+    padding: var(--padding-11xs) 0 0;
+  }
+  .frame-parent1,
+  .frame-wrapper,
+  .university-drive-suite-200-cor-parent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 100%;
+  }
+  .frame-parent1 {
+    flex: 1;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 72px;
+  }
+  .frame-wrapper,
+  .university-drive-suite-200-cor-parent {
+    width: 503px;
+  }
+  .frame-wrapper {
+    width: 1131px;
+    justify-content: center;
+    padding: 0 var(--padding-xl);
+    box-sizing: border-box;
+  }
+  .copyright-divider {
+    align-self: stretch;
+    height: 1px;
+    position: relative;
+    border-top: 1px solid var(--color-gainsboro);
+    box-sizing: border-box;
+  }
+  .furino-all-rights {
+    position: relative;
+  }
+  .furino-all-rights-reverved-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 var(--padding-11xs);
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  .copyright-divider-parent {
+    align-self: stretch;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 34px;
+    color: var(--color-black);
+  }
+  .copyright-divider-parent,
+  .footer1,
+  .group-div {
+    display: flex;
+    max-width: 100%;
+  }
+  .group-div {
+    width: 1240px;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 48px;
+    z-index: 1;
+  }
+  .footer1 {
+    align-self: stretch;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    padding: var(--padding-29xl) var(--padding-xl) 38px;
+    box-sizing: border-box;
+    position: relative;
+    margin-top: -1px;
+  }
+  .social-icons5,
+  .vgubookinspiredclubliber {
+    position: absolute;
+    margin: 0 !important;
+    top: 127px;
+    z-index: 2;
+  }
+  .vgubookinspiredclubliber {
+    right: 230px;
+    font-weight: 500;
+    color: var(--color-black);
+  }
+  .social-icons5 {
+    width: 24px;
+    height: 24px;
+    right: 469px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .bookclub-logo-2-icon1 {
+    width: 420.2px;
+    height: 408px;
+    position: absolute;
+    margin: 0 !important;
+    top: 0;
+    left: 61px;
+    object-fit: cover;
+    z-index: 3;
+  }
+  .footer {
+    align-self: stretch;
+    position: relative;
+    max-width: 100%;
+    text-align: left;
+    font-size: var(--font-size-base);
+    color: var(--color-darkgray-100);
+    font-family: var(--font-poppins);
+  }
+  .content,
+  .footer,
+  .single-product-additional-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .content {
+    align-self: stretch;
+    gap: 98px;
+    max-width: 100%;
+  }
+  .single-product-additional-info {
+    width: 100%;
+    position: relative;
+    background-color: var(--color-white1);
+    overflow: hidden;
+    padding: 46px 0 0;
+    box-sizing: border-box;
+    gap: 73px;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    font-size: var(--font-size-5xl);
+    color: var(--color-darkgray-100);
+    font-family: var(--font-poppins);
+  }
+  @media screen and (max-width: 1275px) {
+    .navi-frame-parent {
+      padding-left: 106px;
+      padding-right: var(--padding-6xl);
+      box-sizing: border-box;
+    }
+    .product-gallery,
+    .product-info {
+      flex: 1;
+    }
+    .rectangle-parent {
+      gap: 53px;
+      flex-wrap: wrap;
+      padding-left: var(--padding-30xl);
+      padding-right: var(--padding-30xl);
+      box-sizing: border-box;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .navi-frame-parent {
+      padding-left: 53px;
+      box-sizing: border-box;
+    }
+    .product-gallery {
+      gap: var(--gap-mini);
+      flex-wrap: wrap;
+      min-width: 100%;
+    }
+    .the-hunger-games-container {
+      font-size: 34px;
+      line-height: 40px;
+    }
+    .product-info {
+      gap: 27px;
+      min-width: 100%;
+    }
+    .rectangle-parent {
+      gap: 26px;
+      padding: 23px 24px;
+      box-sizing: border-box;
+    }
+    .frame-parent1 {
+      gap: var(--gap-17xl);
+    }
+    .copyright-divider-parent {
+      gap: 17px;
+    }
+    .group-div {
+      gap: var(--gap-5xl);
+    }
+    .footer1 {
+      padding-bottom: var(--padding-6xl);
+      box-sizing: border-box;
+    }
+    .content {
+      gap: 49px;
+    }
+    .single-product-additional-info {
+      gap: var(--gap-17xl);
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .additional-information,
+    .overview {
+      font-size: var(--font-size-lgi);
+    }
+    .navi-frame-parent {
+      display: none;
+      padding-left: var(--padding-xl);
+      box-sizing: border-box;
+    }
+    .the-hunger-games-container {
+      font-size: 25px;
+      line-height: 30px;
+    }
+    .div1 {
+      font-size: var(--font-size-lgi);
+      line-height: 29px;
+    }
+    .frame-container {
+      flex-wrap: wrap;
+    }
+    .author,
+    .distributor1,
+    .genre,
+    .pages,
+    .publication-year,
+    .publlisher,
+    .value-placeholder,
+    .value-placeholder1,
+    .value-placeholder2,
+    .value-placeholder3,
+    .value-placeholder4,
+    .value-placeholder5 {
+      font-size: var(--font-size-2xl);
+    }
+    .detail-header-list {
+      gap: 22px;
+    }
+    .dystopian-fiction,
+    .scholarstic,
+    .scholarstic1,
+    .specific-value-list,
+    .specific-value-list1,
+    .suzanne-collins1 {
+      font-size: var(--font-size-2xl);
+    }
+    .specific-values {
+      flex: 1;
+    }
+    .detail-headers {
+      flex-wrap: wrap;
+    }
+    .funiro {
+      font-size: var(--font-size-lgi);
+    }
+    .help-parent,
+    .links-parent {
+      flex: 1;
+    }
+    .frame-parent2 {
+      flex-wrap: wrap;
+    }
+    .frame-parent1 {
+      gap: var(--gap-lg);
+    }
+    .content {
+      gap: var(--gap-5xl);
+    }
+    .single-product-additional-info {
+      gap: var(--gap-lg);
+    }
+  }
+  

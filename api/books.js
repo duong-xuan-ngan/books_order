@@ -47,13 +47,13 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //GET Books
-router.get("/find/:id", async (req, res) => {
+router.get("/details/:id", async (req, res) => {
   try {
     const book = await Books.findById(req.params.id);
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
     }
-    res.status(200).json(book);
+    res.render('BookDetails', { book });;
   } catch (err) {
     res.status(500).json({
       message: "Failed to fetch book",
@@ -85,6 +85,10 @@ router.get("/", async (req, res) => {
     console.error("Error fetching books:", err);
     res.status(500).json({ error: "Internal server error", details: err.message });
   }
+});
+
+router.get("/descending", async (req, res) => {
+  const descending = 
 });
 
 

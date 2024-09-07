@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+
+        .single-product-overview {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .book-image {
+            flex: 1;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .book-image img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .book-details h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .book-details .author {
+            font-size: 20px;
+            color: #34495e;
+            font-style: italic;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+            background-color: #e8f4fd;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .book-details .price {
+            font-size: 28px;
+            color: #e74c3c;
+            font-weight: 700;
+        }
+
+        .book-details .original-price {
+            font-size: 20px;
+            color: #7f8c8d;
+            text-decoration: line-through;
+        }
+
+        .book-details .stock-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            color: #34495e;
+            margin-bottom: 20px;
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .stock-info div {
+            display: flex;
+            align-items: center;
+        }
+
+        .stock-info div::before {
+            content: '•';
+            color: #3498db;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .book-details .buy-button {
+            background-color: #3498db;
+            color: #ffffff;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            align-self: flex-start;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .book-details .buy-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .description {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .description-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .description-content {
+            color: #34495e;
+            font-size: 18px;
+            line-height: 1.8;
+            white-space: pre-line;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+        }
+
+        @media (max-width: 768px) {
+            .single-product-overview {
+                flex-direction: column;
+            }
+
+            .book-image, .book-details {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="single-product-overview">
+            <div class="book-image">
+                <img src="<%= book.image %>" alt="<%= book.title %>">
+            </div>
+            <div class="book-details">
+                <h1><%= book.title %></h1>
+                <div class="author">Tác giả: <%= book.author %></div>
+                <div class="price-container">
+                    <div class="price"><%= book.price.toLocaleString('vi-VN') %> ₫</div>
+                    <% if (book.original_price) { %>
+                    <div class="original-price"><%= book.original_price.toLocaleString('vi-VN') %> ₫</div>
+                    <% } %>
+                </div>
+                <div class="stock-info">
+                    <div>Mã sản phẩm: <%= book.barcode %></div>
+                    <div>Nhà xuất bản: <%= book.publisher %></div>
+                    <div>Số lượng: <%= book.quantityInStock %></div>
+                    <div>Thể loại: <%= book.genre.join(', ') %></div>
+                    <div>Số trang: <%= book.pages %></div>
+                </div>
+                <button class="buy-button" onclick="window.location.href='https://forms.gle/your-google-form-link'">Mua ngay</button>
+            </div>
+        </div>
+        <div class="description">
+            <div class="description-title">Mô tả sản phẩm</div>
+            <div class="description-content"><%- book.description.replace(/\n/g, '<br>') %></div>
+        </div>
+    </div>
+</body>
+</html>
