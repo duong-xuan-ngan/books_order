@@ -22,6 +22,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 const UserRouter = require('./api/User');
 app.use('/user', UserRouter);
 
+// Add these new routes
+app.get('/', async (req, res) => {
+    try {
+        const books = await Book.find();
+        res.render("BookStore", { books, currentSort: 'default' });
+    } catch (err) {
+        console.error("Error fetching books:", err);
+        res.render("BookStore", { books: [], error: "Failed to fetch books. Please try again later." });
+    }
+});
+
+app.get('/books/:id', async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id);
+        if (!book) {
+            return res.status(404).send('Book not found');
+        }
+        res.render('BookDetails', { book });
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+});
+
 // Routes for rendering EJS templates
 app.get('/signin', (req, res) => {
     res.render('signin');
@@ -30,7 +53,6 @@ app.get('/signin', (req, res) => {
 app.get('/signup', (req, res) => {
     res.render('signup');
 });
-
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
