@@ -10,7 +10,7 @@ const UserVerification = require("./../models/UserVerification");
 // MongoDb passwordReset
 const PasswordReset = require("./../models/PasswordReset");
 
-
+const Book = require("./../models/Books");
 
 const verifyToken = require("./verifyToken");
 // authentication for user
@@ -69,9 +69,22 @@ router.get("/email_verification", (req, res) => {
 // Route to display the BookStore page
 router.get("/BookStore", async (req, res) => {
     try {
-        const response = await axios.get("http://localhost:5000/user/books");
-        const books = response.data;
-        res.render("BookStore", { books }); // Changed 'data' to 'books'
+        const sortOrder = req.query.sort || 'default';
+        let sortQuery = {};
+
+        switch (sortOrder) {
+            case 'priceDesc':
+                sortQuery = { price: -1 };
+                break;
+            case 'priceAsc':
+                sortQuery = { price: 1 };
+                break;
+            default:
+                sortQuery = {};
+        }
+
+        const books = await Book.find().sort(sortQuery);
+        res.render("BookStore", { books, currentSort: sortOrder });
     } catch (err) {
         console.error("Error fetching books:", err);
         res.render("BookStore", { books: [], error: "Failed to fetch books. Please try again later." });
