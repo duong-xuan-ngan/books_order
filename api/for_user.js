@@ -11,7 +11,7 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   if (req.body.password) {
     const saltRounds = 10;
     try {
-      const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+      const hashedPassword = await bcryptjs.hash(req.body.password, saltRounds);
       req.body.password = hashedPassword;
     } catch (err) {
       return res.status(500).json({ error: "Password hashing failed", details: err.message });

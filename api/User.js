@@ -177,7 +177,7 @@ router.post("/signup", (req, res) => {
                 } else {
                     // Try to create new user
                     const saltRounds = 10;
-                    bcrypt.hash(password, saltRounds).then((hashedPassword) => {
+                    bcryptjs.hash(password, saltRounds).then((hashedPassword) => {
                         const newUser = new User({
                             name,
                             email,
@@ -232,7 +232,7 @@ const sendVerificationEmail = ({ _id, email }, res) => {
     };
 
     const saltRounds = 10;
-    bcrypt.hash(uniqueString, saltRounds)
+    bcryptjs.hash(uniqueString, saltRounds)
         .then((hashedUniqueString) => {
             const newVerification = new UserVerification({
                 userId: _id,
@@ -294,7 +294,7 @@ const sendPasswordResetEmail = async (user, resetToken) => {
 
     const saltRounds = 10;
     try {
-        const hashedUniqueString = await bcrypt.hash(uniqueString, saltRounds);
+        const hashedUniqueString = await bcryptjs.hash(uniqueString, saltRounds);
         const newPasswordReset = new PasswordReset({
             userId: user._id,
             uniqueString: hashedUniqueString,
@@ -347,7 +347,7 @@ router.get("/verified_signup/:userId/:uniqueString", (req, res) => {
                             res.redirect(`/user/verified_signup/error=true&message=${message}`);
                         });
                 } else {
-                    bcrypt
+                    bcryptjs
                         .compare(uniqueString, hashedUniqueString)
                         .then((result) => {
                             if (result) {
@@ -412,7 +412,7 @@ router.post("/signin", (req, res) => {
                 } else if (!user.verified) {
                     res.render("signin", { error: { type: "email_not_verified" } });
                 } else {
-                    bcrypt.compare(password, user.password)
+                    bcryptjs.compare(password, user.password)
                         .then((isMatch) => {
                             if (isMatch) {
                                 const accesstoken = jwt.sign({
@@ -540,7 +540,7 @@ router.post("/resetpassword", (req, res) => {
             }
 
             // Hash the new password
-            bcrypt.hash(password, 10)
+            bcryptjs.hash(password, 10)
                 .then((hashedPassword) => {
                     user.password = hashedPassword;
                     user.resetPasswordToken = undefined;
@@ -598,7 +598,7 @@ router.post("/reset/:token", (req, res) => {
             }
 
             // Hash the new password
-            bcrypt.hash(password, 10)
+            bcryptjs.hash(password, 10)
                 .then((hashedPassword) => {
                     user.password = hashedPassword;
                     user.resetPasswordToken = undefined;
