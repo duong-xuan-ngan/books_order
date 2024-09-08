@@ -46,7 +46,7 @@
                                     <div class="product-details">
                                         <div class="price">
                                             <div class="frame-4">
-                                                <div class="fix-price"><%= book.price %> đ</div>
+                                                <div class="fix-price"><%= book.price.toLocaleString('vi-VN') %> ₫</div>
                                                 <% if (book.original_price && book.original_price > book.price) { %>
                                                     <div class="fix-price-2"><%= book.original_price %> đ</div>
                                                 <% } %>
