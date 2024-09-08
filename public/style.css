@@ -36,8 +36,8 @@ body {
 }
 
 .bookclub-logo {
-  width: 80px;
-  height: 80px;
+  width: 100px; /* Increased from 80px */
+  height: 100px; /* Increased from 80px */
   object-fit: contain;
 }
 
@@ -47,9 +47,9 @@ body {
 }
 
 .nav-link {
-  font-size: 18px;
+  font-size: 34px;
   font-weight: 600;
-  color: #fff;
+  color: #333; /* Changed from #fff to #333 (black) */
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: color 0.3s ease;
@@ -242,11 +242,13 @@ body {
 
   .nav-links {
     margin-top: 10px;
+    color: black;
   }
 
   .nav-link {
     margin-left: 0;
     margin-right: 20px;
+    color: #333; /* Changed from black to #333 to be consistent */
   }
 
   .featured-products {
