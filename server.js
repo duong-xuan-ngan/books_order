@@ -6,6 +6,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const cors = require("cors");
 const bodyParser = require('body-parser');
+const Book = require('./models/Books');  // Add this line
 
 app.use(cors());
 app.use(express.json());
@@ -25,11 +26,25 @@ app.use('/user', UserRouter);
 // Add these new routes
 app.get('/', async (req, res) => {
     try {
-        const books = await Book.find();
-        res.render("BookStore", { books, currentSort: 'default' });
+        const sortOrder = req.query.sort || 'default';  // Get sort order from query params or use 'default'
+        let sortQuery = {};
+
+        switch (sortOrder) {
+            case 'priceDesc':
+                sortQuery = { price: -1 };
+                break;
+            case 'priceAsc':
+                sortQuery = { price: 1 };
+                break;
+            default:
+                sortQuery = {};
+        }
+
+        const books = await Book.find().sort(sortQuery);
+        res.render("BookStore", { books, currentSort: sortOrder });  // Pass currentSort to the template
     } catch (err) {
         console.error("Error fetching books:", err);
-        res.render("BookStore", { books: [], error: "Failed to fetch books. Please try again later." });
+        res.render("BookStore", { books: [], currentSort: 'default', error: "Failed to fetch books. Please try again later." });
     }
 });
 
