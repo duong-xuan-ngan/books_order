@@ -4,7 +4,7 @@ const {
   verifyTokenAndAdmin,
 } = require("./verifyToken");
 const router = require("express").Router();
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 const User = require("./../models/user");
 
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {

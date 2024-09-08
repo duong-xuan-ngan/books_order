@@ -36,7 +36,7 @@ const { v4: uuidv4 } = require("uuid");
 require("dotenv").config();
 
 // Password handler
-const bcrypt = require("bcrypt");
+const bcryptjs= require("bcryptjs");
 
 // Path for static verified name
 const path = require("path");
