@@ -22,8 +22,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 const UserRouter = require('./api/User');
 app.use('/user', UserRouter);
 
-// Modify these routes
-app.get('/user', async (req, res) => {
+// Add these new routes
+app.get('/', async (req, res) => {
     try {
         const books = await Book.find();
         res.render("BookStore", { books, currentSort: 'default' });
@@ -33,7 +33,7 @@ app.get('/user', async (req, res) => {
     }
 });
 
-app.get('/user/books/:id', async (req, res) => {
+app.get('/books/:id', async (req, res) => {
     try {
         const book = await Book.findById(req.params.id);
         if (!book) {
